@@ -23,7 +23,7 @@
 </div>
 
 <div id="toolBox">
-    <div id="head">Drag and Drop ToolBox</div>
+    <div id="head">HATALMAS TESZTEK</div>
     <div>
         <button id="texts" onclick="showTexts()" class=toolBoxButtons>Texts</button>
         <div id="texts_container" style="display: none" ;>
