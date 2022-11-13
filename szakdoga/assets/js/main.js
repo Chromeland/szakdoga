@@ -15,6 +15,7 @@ document.addEventListener('click', function (e) {
             } else {
                 document.getElementById("selected").remove();
                 modifierConst(elem);
+                //test
             }
         }
     }
