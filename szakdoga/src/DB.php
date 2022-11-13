@@ -37,7 +37,6 @@ class DB
             return self::$connections[$dbName];
         }
 
-        // TODO: Persistent connections enabled by PDO::ATTR_PERSISTENT makes the requests faster
         // Research and tests needs to be done on how to handle them
         $hostName = 'localhost:3306';
         self::$connections[$dbName] = new PDO(
