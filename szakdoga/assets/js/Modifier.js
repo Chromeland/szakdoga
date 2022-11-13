@@ -12,8 +12,8 @@ function saveElementModifications() {
     showLoader("Save");
 
     $.ajax({
-        url: 'RequestHandler.php',
         data: {
+            url: '../../src/RequestHandler.php',
             type: 'SaveToDb',
             ID: element.firstChild.id,
         },
