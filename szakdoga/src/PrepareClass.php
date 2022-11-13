@@ -1,5 +1,7 @@
 <?php
 
+include('DB.php');
+
 class PrepareClass
 {
 
@@ -7,7 +9,7 @@ class PrepareClass
     {
         static $inst = null;
         if ($inst === null) {
-            $inst = new AnytoolsClass();
+            $inst = new PrepareClass();
         }
         return $inst;
     }
@@ -16,7 +18,8 @@ class PrepareClass
     {
         $db = DB::Instance();
 
-        /* $query = "INSERT INTO `texts`(`ID`) VALUES ('Akarmi')";
-         $db->query('szakdolgozat', $query);*/
+//        $query = "INSERT INTO `texts`(`ID`) VALUES ('Akarmi')";
+//        $db->query('szakdolgozat', $query);
+        return true;
     }
 }

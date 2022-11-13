@@ -1,6 +1,5 @@
 <?php
-
-require_once('Loader.php');
+include('PrepareClass.php');
 
 header('Content-Type: application/json');
 

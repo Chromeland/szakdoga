@@ -12,14 +12,15 @@ function saveElementModifications() {
     showLoader("Save");
 
     $.ajax({
+        url: 'RequestHandler.php',
         data: {
             type: 'SaveToDb',
             ID: element.firstChild.id,
         },
     })
         .done((params) => {
-            if (params === null) {
-                console.log("Hát ez még szar");
+            if (params) {
+                console.log(params);
             }
         })
         .always(() => {
