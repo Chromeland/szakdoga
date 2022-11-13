@@ -6,7 +6,7 @@
  * If it is desired to put classes in sub-folders, the spl_autoload_register function has to be extended.
  */
 
-/* umask(0);
+umask(0);
 
 // The szakdoga_ROOT constant is defined here.
 // With the help of that, absolute paths can and should be used to define paths.
@@ -23,11 +23,11 @@ if (!defined('Szakdoga_ROOT')) {
 error_reporting(E_ERROR | E_PARSE);
 
 spl_autoload_register(function ($class) {
-        $filePath = szakdoga_ROOT . "/src/$class.php";
-        if (!file_exists($filePath)) {
-            // TODO: This shouldn't be ignored silently
-            //throw new Exception("$class.php doesn't exists!");
-        } else {
-            require_once szakdoga_ROOT . "/src/$class.php";
-        }
-}); */
+    $filePath = szakdoga_ROOT . "/src/$class.php";
+    if (!file_exists($filePath)) {
+        // TODO: This shouldn't be ignored silently
+        //throw new Exception("$class.php doesn't exists!");
+    } else {
+        require_once szakdoga_ROOT . "/src/$class.php";
+    }
+});
