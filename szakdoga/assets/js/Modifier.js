@@ -12,17 +12,16 @@ function saveElementModifications() {
     showLoader("Save");
 
     $.ajax({
+        url: 'https://localhost/szakdolgozat/szakdoga/src/RequestHandler.php',
         data: {
-            url: '../../src/RequestHandler.php',
-            type: 'SaveToDb',
-            ID: element.firstChild.id,
+            type: "SaveToDb",
+            ID: element.firstChild.id
         },
+        type: 'POST',
+        success(result) {
+            alert(result);
+        }
     })
-        .done((params) => {
-            if (params) {
-                console.log(params);
-            }
-        })
         .always(() => {
             hideLoader('Save');
         });

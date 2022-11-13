@@ -75,7 +75,7 @@
 </div>
 <div id="modifier">
     <div id="head">Selected element modifier
-        <button onclick="saveElementModifications()">Save</button>
+        <button id="SaveToDB" onclick="saveElementModifications()">Save</button>
     </div>
 </div>
 <div id="Background" class="Background" ondrop="ondropHandler(event)" ondragover="ondragOverHandler(event)">
@@ -93,6 +93,11 @@
 </div>
 <script>
     document.addEventListener("mouseover", mouseOverDocument, false);
+    $(document).ready(function () {
+        $("#SaveToDB").click(function () {
+            saveElementModifications();
+        });
+    });
 </script>
 </body>
 </html>
