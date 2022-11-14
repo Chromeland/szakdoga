@@ -14,7 +14,7 @@ function saveElementModifications() {
 
     jQuery.ajax({
         type: "POST",
-        url: 'prepareDBAction.php',
+        url: '../src/PrepareClass.php',
         dataType: 'json',
         data: {functionname: 'prepareDBAction', arguments: [elem_id]},
 
@@ -27,7 +27,10 @@ function saveElementModifications() {
                 hideLoader("Save");
             }
         }
-    });
+    })
+        .always(() => {
+            hideLoader('collectDevice');
+        });
 }
 
 /**
