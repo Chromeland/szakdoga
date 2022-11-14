@@ -2,13 +2,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/style/style.css">
-    <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/ToolBar.js"></script>
-    <script src="../assets/js/Modifier.js"></script>
-    <script type="text/javascript" src="../assets/js/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="../assets/js/jquery-ui.js"></script>
-    <script type="module" src="../assets/js/drag_and_drop.js"></script>
+    <link rel="stylesheet" href="/assets/style/style.css">
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/ToolBar.js"></script>
+    <script src="/assets/js/Modifier.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery-ui.js"></script>
+    <script type="module" src="/assets/js/drag_and_drop.js"></script>
 
     <title>Szakdoga</title>
 </head>
@@ -18,7 +18,7 @@
 </div>
 <div id="header"> Welcome To My Webpage!
     <div class="dropdown" onmouseover="showOrHideDropdownMenu(true)">
-        <img src="../assets/icons/Menu.svg" style="width: 24px; height: 24px;"/>
+        <img src="/assets/icons/Menu.svg" style="width: 24px; height: 24px;"/>
     </div>
 </div>
 
