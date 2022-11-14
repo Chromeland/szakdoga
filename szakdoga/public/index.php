@@ -91,13 +91,6 @@
     <a>Welcome to my webpage!</a>
     <a>Welcome to my webpage!</a>
 </div>
-<script>
-    document.addEventListener("mouseover", mouseOverDocument, false);
-    $(document).ready(function () {
-        $("#SaveToDB").click(function () {
-            saveElementModifications();
-        });
-    });
-</script>
+
 </body>
 </html>

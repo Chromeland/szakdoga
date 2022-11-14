@@ -7,25 +7,27 @@ function saveElementModifications() {
         return false;
     }
 
-    console.log(element.firstChild.id);
+    let elem_id = element.firstChild.id;
+    console.log(elem_id);
 
     showLoader("Save");
 
-    $.ajax({
-        url: 'https://localhost/szakdolgozat/szakdoga/src/RequestHandler.php',
-        data: {
-            type: "SaveToDb",
-            ID: element.firstChild.id
-        },
-        type: 'POST',
-        success(result) {
-            alert(result);
-        }
-    })
-        .always(() => {
-            hideLoader('Save');
-        });
+    jQuery.ajax({
+        type: "POST",
+        url: 'prepareDBAction.php',
+        dataType: 'json',
+        data: {functionname: 'prepareDBAction', arguments: [elem_id]},
 
+        success: function (obj, textstatus) {
+            if (!('error' in obj)) {
+                yourVariable = obj.result;
+                hideLoader("Save");
+            } else {
+                console.log(obj.error);
+                hideLoader("Save");
+            }
+        }
+    });
 }
 
 /**

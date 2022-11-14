@@ -9,15 +9,6 @@ class DB
      */
     private static $connections = [];
 
-    public static function Instance(): DB
-    {
-        if (!self::$instance) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
-    }
-
     /**
      * Returns a PDO object connected to the specified database.
      * Connections are stored in the $connections array, indexed by the name of the database they are connecting to.
