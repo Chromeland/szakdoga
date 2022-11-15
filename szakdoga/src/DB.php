@@ -9,6 +9,15 @@ class DB
      */
     private static $connections = [];
 
+    public static function Instance(): DB
+    {
+        if (!self::$instance) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
+
     /**
      * Returns a PDO object connected to the specified database.
      * Connections are stored in the $connections array, indexed by the name of the database they are connecting to.
@@ -58,5 +67,12 @@ class DB
             $this->logError($e, $query, $params);
             return false;
         }
+    }
+
+    private function logError(PDOException $e, string $query, array $params)
+    {
+        $date = date('Y-m-d H:i:s');
+        $message = "\n$date {$e->getMessage()}\nQuery: $query\nParams: " . json_encode($params) . "\n{$e->getTraceAsString()}";
+        echo $message;
     }
 }

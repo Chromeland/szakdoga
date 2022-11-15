@@ -2,44 +2,36 @@
 
 include('DB.php');
 
-header('Content-Type: application/json');
-
-$aResult = array();
-
-if (!isset($_POST['functionname'])) {
-    $aResult['error'] = 'No function name!';
+if ($_POST["type"] === 'SaveToDb') {
+    echo(json_encode(prepareDBAction($_POST["ID"])));
+} else {
+    echo(json_encode($_POST["ID"]));
 }
-
-if (!isset($_POST['arguments'])) {
-    $aResult['error'] = 'No function arguments!';
-}
-
-if (!isset($aResult['error'])) {
-
-    switch ($_POST['functionname']) {
-        case 'prepareDBAction':
-            if (!is_array($_POST['arguments'])) {
-                $aResult['error'] = 'Error in arguments!';
-            } else {
-                $aResult['result'] = prepareDBAction(($_POST['arguments'][0]));
-            }
-            break;
-
-        default:
-            $aResult['error'] = 'Not found function ' . $_POST['functionname'] . '!';
-            break;
-    }
-
-}
-
-echo json_encode($aResult);
 
 function prepareDBAction($id)
 {
-    $db = DB::Instance();
+    $tmp = explode("#", $id);
+    $id = $tmp[0];
 
-    $query = "INSERT INTO `texts`(`ID`) VALUES ('Akarmi')";
-    return $db->query('szakdolgozat', $query);
+    $servername = "localhost:3306";
+    $username = "BenceTest";
+    $password = "123";
+    $dbname = "szakdolgozat";
 
+// Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
+    $sql = "INSERT INTO `texts`(`ID`) VALUES ('" . $id . "')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    $conn->close();
 }

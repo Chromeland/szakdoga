@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<?php
+//include ('../src/PrepareClass.php');
+?>
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
@@ -6,8 +10,7 @@
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/ToolBar.js"></script>
     <script src="./assets/js/Modifier.js"></script>
-    <script type="text/javascript" src="./assets/js/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="./assets/js/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="module" src="./assets/js/drag_and_drop.js"></script>
 
     <title>Szakdoga</title>
@@ -85,11 +88,13 @@
 <div id="modifiersFromMain"></div>
 <div id="toolBoxFromModifier"></div>
 <div class="dropdown-content" onclick="showOrHideDropdownMenu(false)">
-    <a>Welcome to my webpage!</a>
-    <a>Welcome to my webpage!</a>
-    <a>Welcome to my webpage!</a>
-    <a>Welcome to my webpage!</a>
-    <a>Welcome to my webpage!</a>
+    <form>
+        <a>Write this </a>
+        <a>Welcome to my webpage!</a>
+        <a>Welcome to my webpage!</a>
+        <a>Welcome to my webpage!</a>
+        <a>Welcome to my webpage!</a>
+    </form>
 </div>
 
 </body>

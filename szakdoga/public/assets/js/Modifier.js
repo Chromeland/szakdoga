@@ -10,27 +10,17 @@ function saveElementModifications() {
     let elem_id = element.firstChild.id;
     console.log(elem_id);
 
-    showLoader("Save");
+    showLoader('Save');
 
-    jQuery.ajax({
-        type: "POST",
+    $.ajax({
         url: '../src/PrepareClass.php',
-        dataType: 'json',
-        data: {functionname: 'prepareDBAction', arguments: [elem_id]},
-
-        success: function (obj, textstatus) {
-            if (!('error' in obj)) {
-                yourVariable = obj.result;
-                hideLoader("Save");
-            } else {
-                console.log(obj.error);
-                hideLoader("Save");
-            }
+        type: "POST",
+        data: {
+            type: "SaveToDb",
+            ID: elem_id
         }
     })
-        .always(() => {
-            hideLoader('collectDevice');
-        });
+        .always(() => hideLoader('Save'));
 }
 
 /**
