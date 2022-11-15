@@ -1,7 +1,5 @@
 <?php
 
-include('DB.php');
-
 if ($_POST["type"] === 'SaveToDb') {
     echo(json_encode(prepareDBAction($_POST["ID"])));
 } else {
