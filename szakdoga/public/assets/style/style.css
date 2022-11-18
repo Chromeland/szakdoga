@@ -143,6 +143,10 @@
     position: absolute;
 }
 
+.mody_label{
+    margin-bottom: 5px;
+}
+
 .loader {
     position: absolute;
     top: 50%;
