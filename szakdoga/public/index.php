@@ -157,6 +157,10 @@
                 <h4 class="mody_label">Border Thickness</h4>
                 <input id="border_size" type="number">
             </div>
+            <div>
+                <h4 class="mody_label">Border Color</h4>
+                <input id="border_color" type="color">
+            </div>
         </div>
 
 

@@ -42,7 +42,7 @@ function getSelectedElement(element) {
         element.style.borderColor = "red";
         return false;
     } else if (document.getElementById(localStorage.selectedObj)) {
-        document.getElementById(localStorage.selectedObj).style.borderColor = "black";
+        document.getElementById(localStorage.selectedObj).style.borderColor = document.getElementById('border_color').value;
         element.style.borderColor = "red";
         localStorage.selectedObj = element.id;
         return true;

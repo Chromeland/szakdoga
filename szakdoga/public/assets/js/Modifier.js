@@ -26,7 +26,7 @@ function saveTextToDB () {
     } else {
         elem_type = "list"
     }
-    let parentElemet = selectedEement.parentElement.id;
+    let parentElement = selectedEement.parentElement.id;
     let posX = selectedEement.getAttribute("data-x");
     let posY = selectedEement.getAttribute("data-y");
     let innerText = document.getElementById('text_inner').value;
@@ -38,6 +38,7 @@ function saveTextToDB () {
     let opacity = document.getElementById('text_opacity').value;
     let borderCheck = document.getElementById('text_border').checked;
     let borderRadius = document.getElementById('border_radius').value;
+    let borderColor = document.getElementById('border_color').value;
     let borderStyle = document.getElementById('border_style').value;
     let borderSize = document.getElementById('border_size').value;
 
@@ -58,6 +59,7 @@ function saveTextToDB () {
         selectedEement.style.borderRadius = borderRadius + "px";
         selectedEement.style.borderWidth = borderSize + "px";
         selectedEement.style.borderStyle = borderStyle;
+        selectedEement.style.borderColor = borderColor;
     }else{
         selectedEement.style.border = "none";
     }
@@ -66,10 +68,10 @@ function saveTextToDB () {
         url: '../src/PrepareClass.php',
         type: "POST",
         data: {
-            type: "saveTextToDB",
+            type: "TextToDb",
             ID: elem_id,
-            type: elem_type,
-            parentElemet: parentElemet,
+            Type: elem_type,
+            parentElement: parentElement,
             posX: posX,
             posY: posY,
             innerText: innerText,
@@ -81,9 +83,13 @@ function saveTextToDB () {
             opacity: opacity,
             borderRadius: borderRadius,
             borderStyle: borderStyle,
-            borderSize: borderSize
+            borderSize: borderSize,
+            borderColor: borderColor
         }
     })
+        .done((response) => {
+            console.log(response);
+        })
         .always(() => hideLoader('Save'));
 
 }

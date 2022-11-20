@@ -118,6 +118,6 @@ interact('.cloned').dropzone({
         // remove active dropzone feedback
         event.target.classList.remove('drop-active')
         event.target.classList.remove('drop-target')
-        event.relatedTarget.style.borderColor = "black"
+        event.relatedTarget.style.borderColor = document.getElementById('border_color').value;
     }
 })
