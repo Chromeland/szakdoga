@@ -6,18 +6,10 @@ document.addEventListener('click', function (e) {
     var target = e.target,
         elem = target;
     if (elem.id === "Background" || elem.parentElement.id === "Background" || elem.parentElement.id.includes("cloned")) {
-
-
-        if (getSelectedElement(elem)) {
-            let modifier = document.getElementById("modifier");
-
-            if (modifier.childElementCount <= 1) {
-                modifierConst(elem);
-            } else {
-                document.getElementById("selected").remove();
-                modifierConst(elem);
-            }
-        }
+        getSelectedElement(elem)
+        modifierConst(elem);
+    }else if(elem.id === "text_border"){
+        (document.getElementById('text_border').checked) ? borderContainerDiv.style.display = 'block' : borderContainerDiv.style.display = 'none';
     }
 }, false);
 
@@ -63,40 +55,21 @@ function getSelectedElement(element) {
 
 function modifierConst(elem) {
     let modifier = document.getElementById("modifier");
+    let saveButton = document.getElementById("SaveToDB");
+    saveButton.removeAttribute("onclick");
 
-    let containerDiv = document.createElement("div");
-    containerDiv.setAttribute("id", "selected");
-    containerDiv.classList.add("modifierFieldContainer");
+    let textContainer = document.getElementById('textContainer');
+    textContainer.style.display = "none";
+    let backgroundContainer = document.getElementById('backgroundContainer');
+    backgroundContainer.style.display = "none";
 
-    let label = document.createElement("h3");
-    label.setAttribute("id", elem.id + "#mody");
-    label.setAttribute("class", "SelectedElement");
+    textContainer.children[0].setAttribute("id", elem.id + "#mody");
+    textContainer.children[0].setAttribute("class", "SelectedElement");
     if (elem.id.includes("label")) {
-        label.innerText = "Label Settings:";
-        containerDiv.appendChild(label);
+        saveButton.setAttribute("onclick","saveTextToDB()");
+        textContainer.style.display = "block";
     } else if (elem.id.includes("Background")) {
-        label.innerText = "Background Settings";
-        containerDiv.appendChild(label);
-
-        let background_color = document.createElement("h4");
-        background_color.innerHTML = "Background Color:";
-        background_color.setAttribute("class","mody_label");
-
-        let background_color_input = document.createElement("input");
-        background_color_input.setAttribute("type","color");
-        background_color_input.setAttribute("id","background_color");
-        containerDiv.appendChild(background_color);
-        containerDiv.appendChild(background_color_input);
-
-        let background_image = document.createElement("h4");
-        background_image.innerHTML = "Background Image:";
-        background_image.setAttribute("class","mody_label");
-
-        let background_image_input = document.createElement("input");
-        background_image_input.setAttribute("type","file");
-        background_image_input.setAttribute("id","background_image");
-        containerDiv.appendChild(background_image);
-        containerDiv.appendChild(background_image_input);
+        saveButton.setAttribute("onclick","saveBackgroundToDB()");
+        backgroundContainer.style.display = "block";
     }
-    modifier.appendChild(containerDiv);
 }

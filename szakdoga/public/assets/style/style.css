@@ -6,7 +6,7 @@
     right: 0;
     background: #f2f2f2;
     z-index: 0;
-    overflow: auto;
+    /*overflow: auto;*/
 }
 
 #toolBox {
@@ -27,15 +27,18 @@
     bottom: 0px;
     width: 17.5%;
     background: #f2f2f2;
-    background-color: blue;
+    /*background-color: blue;*/
+    overflow: auto;
 }
 
-#modifier .modifierFieldContainer {
+.modifierFieldContainer {
     display: table;
     width: 100%;
     font-weight: normal;
     box-sizing: border-box;
     padding-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 5px;
 }
 
 #head {
@@ -145,6 +148,41 @@
 
 .mody_label{
     margin-bottom: 5px;
+}
+
+option{
+    font-size: 15;
+    text-align: center;
+}
+
+textarea{
+    width: 90%;
+    height: 50px;
+}
+
+input{
+    width: 50%;
+}
+
+#borderDiv{
+    padding-top: 15px;
+}
+
+#text_border_label{
+    font-size: 1em;
+    margin-top: 1.33em;
+    margin-bottom: 1.33em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+#text_border{
+    width: 10%;
+}
+
+select{
+    width: 50%;
 }
 
 .loader {

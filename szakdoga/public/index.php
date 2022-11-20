@@ -78,7 +78,89 @@
 </div>
 <div id="modifier">
     <div id="head">Selected element modifier
-        <button id="SaveToDB" onclick="saveElementModifications()">Save</button>
+        <button id="SaveToDB">Save</button>
+    </div>
+    <div id="backgroundContainer" style="display: none" class="modifierFieldContainer">
+
+    </div>
+    <div id="textContainer" class="modifierFieldContainer" style="display: none">
+        <h3 id="label_settings">Label Settings</h3>
+        <div>
+            <h4 class="mody_label">Text:</h4>
+            <label for="text_inner" style="display: none"></label>
+            <textarea id="text_inner" name="text_inner" rows="4" cols="40"></textarea>
+        </div>
+        <div>
+            <h4 class="mody_label">Text Style</h4>
+            <select id="text_style_select">
+                <option id="itlaic" style="font-style: italic">Italic</option>
+                <option id="bold" style="font-weight: bold">Bold</option>
+                <option selected id="normal" style="font-style: normal">Normal</option>
+            </select>
+        </div>
+        <div>
+            <h4 class="mody_label">Text family</h4>
+            <select id="text_font_family_select">
+                <option selected id="arial" style="font-family: Arial">Arial</option>
+                <option id="times" style="font-family: 'Times New Roman'">Times New Roman</option>
+                <option id="courier" style="font-family: 'Courier New'">Courier New</option>
+                <option id="georgia" style="font-family: Georgia">Georgia</option>
+                <option id="brush" style="font-family: 'Brush Script MT'">Brush Script MT</option>
+            </select>
+        </div>
+        <div>
+            <h4 class="mody_label">Text color</h4>
+            <input id="text_color" type="color">
+        </div>
+        <div>
+            <h4 class="mody_label">Text Size</h4>
+            <input id="text_size" type="number" placeholder="12">
+        </div>
+        <div>
+            <h4 class="mody_label">Text Align</h4>
+            <select id="text_align">
+                <option id="align_left" style="text-align: left">Left</option>
+                <option id="align_right" style="text-align: right">Right</option>
+                <option selected id="align_center" style="text-align: center">Center</option>
+                <option id="align_justify" style="text-align: justify">Justify</option>
+            </select>
+        </div>
+        <div>
+            <h4 class="mody_label">Text Opacity</h4>
+            <input id="text_opacity" type="number">
+        </div>
+        <div id="borderDiv">
+            <label for="text_border" id="text_border_label">Border</label>
+            <input id="text_border" type="checkbox">
+        </div>
+        <div id="borderContainerDiv" style="display: none">
+            <div>
+                <h4 class="mody_label">Border Style</h4>
+                <select id="border_style">
+                    <option id="border_solid" style="border-style: solid">Solid</option>
+                    <option id="border_dashed" style="border-style: dashed">Dashed</option>
+                    <option id="border_dotted" style="border-style: dotted">Dotted</option>
+                    <option id="border_double" style="border-style: double">Double</option>
+                    <option id="border_inset" style="border-style: inset">Inset</option>
+                    <option id="border_outset" style="border-style: outset">Outset</option>
+                    <option id="border_groove" style="border-style: groove">Groove</option>
+                    <option id="border_dot-dash" style="border-style: dot-dash">Dot-Dash</option>
+                    <option id="border_dot-dot-dash" style="border-style: dot-dot-dash">Dot-Dot-Dash</option>
+                </select>
+            </div>
+            <div>
+                <h4 class="mody_label">Border Edges</h4>
+                <label for="border_radius"><small>(Number - How round the border corners will be.)</small></label>
+                <input id="border_radius" type="number">
+            </div>
+            <div>
+                <h4 class="mody_label">Border Thickness</h4>
+                <input id="border_size" type="number">
+            </div>
+        </div>
+
+
+
     </div>
 </div>
 <div id="Background" class="Background" ondrop="ondropHandler(event)" ondragover="ondragOverHandler(event)">
