@@ -29,7 +29,7 @@ interact('.cloned')
         modifiers: [
             // minimum size
             interact.modifiers.restrictSize({
-                min: {width: 50, height: 20}
+                min: { width: 100, height: 50 }
             })
         ],
 
@@ -38,7 +38,12 @@ interact('.cloned')
     .draggable({
         listeners: {move: dragMoveListener},
         inertia: false,
-        autoScroll: true,
+        modifiers: [
+            interact.modifiers.restrictRect({
+                restriction: 'parent',
+                endOnly: true
+            })
+        ],
 
     })
 
@@ -86,15 +91,24 @@ interact('.cloned').dropzone({
     },
     ondragleave: function (event) {
         // remove the drop feedback style
-        event.target.classList.remove('drop-target')
-        event.relatedTarget.classList.remove('can-drop')
-        event.relatedTarget.style.borderColor = 'red'
+        if (!event.target.parentElement) {
+            event.target.classList.remove('drop-target')
+            event.relatedTarget.classList.remove('can-drop')
+            event.relatedTarget.style.borderColor = 'red'
+        }else{
+            event.target.parentElement.insertBefore(event.relatedTarget,null)
+            let posX = (event.dragEvent.client.x) - (window.innerWidth * 0.22);
+            let posY = (event.dragEvent.client.y) - (window.innerHeight * 0.1);
+            event.relatedTarget.style.transform = 'translate(' + posX + 'px, ' + posY + 'px)'
+            event.relatedTarget.setAttribute('data-x', posX)
+            event.relatedTarget.setAttribute('data-y', posY)
+        }
     },
     ondrop: function (event) {
         if (event.relatedTarget.parentElement !== event.target) {
-            event.target.insertBefore(event.relatedTarget, null)
             let x = event.relatedTarget.getAttribute('data-x')
             let y = event.relatedTarget.getAttribute('data-y')
+            event.target.insertBefore(event.relatedTarget, null)
             let z = event.target.getAttribute('data-x')
             let k = event.target.getAttribute('data-y')
 
@@ -104,7 +118,9 @@ interact('.cloned').dropzone({
                 event.relatedTarget.setAttribute('data-y', y)
             } else {
                 x -= z
+                x -= 1
                 y -= k
+                y -= 35
 
                 event.relatedTarget.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
                 event.relatedTarget.setAttribute('data-x', x)
