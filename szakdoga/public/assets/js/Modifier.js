@@ -33,14 +33,20 @@ function saveTextToDB () {
     let style = document.getElementById('text_style_select').value;
     let fontFamily = document.getElementById('text_font_family_select').value;
     let fontColor = document.getElementById('text_color').value;
-    let fontSize = document.getElementById('text_size').value;
+    let fontSize = document.getElementById('text_size').value ? document.getElementById('text_size').value : 12;
     let textAlign = document.getElementById('text_align').value;
-    let opacity = document.getElementById('text_opacity').value;
+    let opacity = document.getElementById('text_opacity').value ? document.getElementById('text_opacity').value : 1;
     let borderCheck = document.getElementById('text_border').checked;
-    let borderRadius = document.getElementById('border_radius').value;
-    let borderColor = document.getElementById('border_color').value;
-    let borderStyle = document.getElementById('border_style').value;
-    let borderSize = document.getElementById('border_size').value;
+    let borderRadius;
+    let borderColor;
+    let borderStyle;
+    let borderSize;
+    if(borderCheck){
+        borderRadius = document.getElementById('border_radius').value ? document.getElementById('border_radius').value : 0;
+        borderColor = document.getElementById('border_color').value;
+        borderStyle = document.getElementById('border_style').value;
+        borderSize = document.getElementById('border_size').value ? document.getElementById('border_size').value : 2;
+    }
 
     selectedEement.innerText = innerText;
     if(style === "Bold"){
@@ -63,29 +69,30 @@ function saveTextToDB () {
     }else{
         selectedEement.style.border = "none";
     }
+    let data = {
+        type: "TextToDb",
+        ID: elem_id,
+        Type: elem_type,
+        parentElement: parentElement,
+        posX: posX,
+        posY: posY,
+        innerText: innerText,
+        style: style,
+        fontFamily: fontFamily,
+        fontColor: fontColor,
+        fontSize: fontSize,
+        textFloat: textAlign,
+        opacity: opacity,
+        borderRadius: borderRadius,
+        borderStyle: borderStyle,
+        borderSize: borderSize,
+        borderColor: borderColor
+    };
 
     $.ajax({
         url: '../src/PrepareClass.php',
         type: "POST",
-        data: {
-            type: "TextToDb",
-            ID: elem_id,
-            Type: elem_type,
-            parentElement: parentElement,
-            posX: posX,
-            posY: posY,
-            innerText: innerText,
-            style: style,
-            fontFamily: fontFamily,
-            fontColor: fontColor,
-            fontSize: fontSize,
-            textFloat: textAlign,
-            opacity: opacity,
-            borderRadius: borderRadius,
-            borderStyle: borderStyle,
-            borderSize: borderSize,
-            borderColor: borderColor
-        }
+        data: data
     })
         .done((response) => {
             console.log(response);
