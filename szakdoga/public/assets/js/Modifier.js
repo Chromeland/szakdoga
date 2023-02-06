@@ -101,6 +101,25 @@ function saveTextToDB () {
 
 }
 
+function getDataFromDB(table,id){
+    showLoader('Read');
+    let data = {
+        type: 'ReadFromDB',
+        Table: table,
+        ID: id
+    }
+    $.ajax({
+        url: '../src/PrepareClass.php',
+        type: "POST",
+        data: data
+    })
+        .done((response) => { //Ez itt valamiért string.
+            console.log(response);
+
+        })
+        .always(() => hideLoader('Read'));
+}
+
 /**
  * If id is given, loader can only be hidden when this id is passed as parameter
  * @param id string

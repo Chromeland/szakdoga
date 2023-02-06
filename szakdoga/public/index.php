@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <?php
-//include ('../src/PrepareClass.php');
 ?>
 <html lang="hu">
 <head>
@@ -162,9 +161,6 @@
                 <input id="border_color" type="color">
             </div>
         </div>
-
-
-
     </div>
 </div>
 <div id="Background" class="Background" ondrop="ondropHandler(event)" ondragover="ondragOverHandler(event)">

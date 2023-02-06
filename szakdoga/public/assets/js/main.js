@@ -50,7 +50,6 @@ function getSelectedElement(element) {
         localStorage.selectedObj = element.id;
         return true;
     }
-
 }
 
 function modifierConst(elem) {
@@ -67,9 +66,8 @@ function modifierConst(elem) {
     textContainer.children[0].setAttribute("class", "SelectedElement");
     if (elem.id.includes("label")) {
         saveButton.setAttribute("onclick","saveTextToDB()");
-        //TODO: AJAX -> DB-ből kiolvasni az adott id-vel rendelkező elem értékeit és a modifier-t azokkkal feltölteni.
-
         textContainer.style.display = "block";
+        getDataFromDB('texts',elem.id);
     } else if (elem.id.includes("Background")) {
         saveButton.setAttribute("onclick","saveBackgroundToDB()");
         backgroundContainer.style.display = "block";

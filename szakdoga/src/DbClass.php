@@ -54,4 +54,32 @@ class DbClass
         $conn->close();
         return true;
     }
+
+    function getTextFromDB($table,$id) {
+        $servername = "localhost:3306";
+        $username = "BenceTeszt";
+        $password = "123";
+        $dbname = "szakdolgozat";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $checkIfExists = $conn->query("SELECT * FROM $table WHERE `ID` = '" . $id . "'");
+        $rowCount = mysqli_num_rows($checkIfExists);
+        //checking if the element already exists
+        if ($rowCount < 1) {
+            echo "No such element exists in the database.";
+            $conn->close();
+            return false;
+        } else {
+            $result[] = $checkIfExists->fetch_array(MYSQLI_ASSOC);
+            $conn->close();
+            return $result;
+        }
+    }
+
 }
