@@ -101,7 +101,7 @@ function saveTextToDB () {
 
 }
 
-function getDataFromDB(table,id){
+function getDataFromDB(table,id) {
     showLoader('Read');
     let data = {
         type: 'ReadFromDB',
@@ -111,12 +111,24 @@ function getDataFromDB(table,id){
     $.ajax({
         url: '../src/PrepareClass.php',
         type: "POST",
-        data: data
-    })
-        .done((response) => { //Ez itt valamiért string.
-            console.log(response);
+        data: data,
+        success: function (result) {
+            let objData = JSON.parse(result);
+            if(objData === 'Error'){
+                return null;
+            }
+            let innerText = document.getElementById('text_inner').value;
+            let style = document.getElementById('text_style_select').value;
+            let fontFamily = document.getElementById('text_font_family_select').value;
+            let fontColor = document.getElementById('text_color').value;
+            let fontSize = document.getElementById('text_size').value;
+            let textAlign = document.getElementById('text_align').value;
+            let opacity = document.getElementById('text_opacity').value;
+            //TODO: a visszakpott tömbből feltölteni ezeket az értékeket (5-től kezdődik), kitalálni valamit a border-re!!!
+            console.log(objData);
+        }
 
-        })
+    })
         .always(() => hideLoader('Read'));
 }
 

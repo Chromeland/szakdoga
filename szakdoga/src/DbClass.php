@@ -72,13 +72,18 @@ class DbClass
         $rowCount = mysqli_num_rows($checkIfExists);
         //checking if the element already exists
         if ($rowCount < 1) {
-            echo "No such element exists in the database.";
             $conn->close();
-            return false;
+            return "Error";
         } else {
             $result[] = $checkIfExists->fetch_array(MYSQLI_ASSOC);
             $conn->close();
-            return $result;
+            foreach ($result as $elements){
+                foreach ($elements as $details){
+                    $getResult[] = $details;
+                    $retString = implode(',',$getResult);
+                }
+            }
+            return $getResult;
         }
     }
 
