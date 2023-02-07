@@ -35,15 +35,10 @@ function elementDelete(e) {
 function getSelectedElement(element) {
 
     if (!localStorage.selectedObj) {
-        element.style.borderColor = "red";
         localStorage.selectedObj = element.id;
         return true;
-    } else if (element.id === localStorage.selectedObj) {
-        element.style.borderColor = "red";
-        return false;
     } else if (document.getElementById(localStorage.selectedObj)) {
         document.getElementById(localStorage.selectedObj).style.borderColor = document.getElementById('border_color').value;
-        element.style.borderColor = "red";
         localStorage.selectedObj = element.id;
         return true;
     } else {

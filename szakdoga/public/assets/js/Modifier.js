@@ -117,14 +117,14 @@ function getDataFromDB(table,id) {
             if(objData === 'Error'){
                 return null;
             }
-            let innerText = document.getElementById('text_inner').value;
-            let style = document.getElementById('text_style_select').value;
-            let fontFamily = document.getElementById('text_font_family_select').value;
-            let fontColor = document.getElementById('text_color').value;
-            let fontSize = document.getElementById('text_size').value;
-            let textAlign = document.getElementById('text_align').value;
-            let opacity = document.getElementById('text_opacity').value;
-            //TODO: a visszakpott tömbből feltölteni ezeket az értékeket (5-től kezdődik), kitalálni valamit a border-re!!!
+            document.getElementById('text_inner').value = objData[5];
+            document.getElementById('text_style_select').value = objData[6];
+            document.getElementById('text_font_family_select').value = objData[7];
+            document.getElementById('text_color').value = objData[8];
+            document.getElementById('text_size').value = objData[9];
+            document.getElementById('text_align').value = objData[10];
+            document.getElementById('text_opacity').value = objData[11];
+
             console.log(objData);
         }
 

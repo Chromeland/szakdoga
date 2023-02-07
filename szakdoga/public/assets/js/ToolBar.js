@@ -85,6 +85,23 @@ function ondropHandler(ev) {
                 return null;
             }
             cloned = ele.cloneNode(true);
+            //TODO: Ne itt legyen az eventListener mert itt mindig a legutolsó behúzott elemre vonatkozik csak!!!
+            cloned.addEventListener('mouseover', (event) => {
+                cloned.style.borderWidth = '1px';
+                cloned.style.borderStyle = 'Solid';
+                cloned.style.borderColor = 'red';
+            });
+            cloned.addEventListener('mouseleave', (event) => {
+                if(document.getElementById('borderContainerDiv').style.display === 'none'){
+                    cloned.style.border = 'none';
+                }else{
+                    cloned.style.borderColor = document.getElementById('border_color').value;
+                    cloned.style.borderWidth = document.getElementById('border_size').value + "px";
+                    cloned.style.borderRadius = document.getElementById('border_radius').value + "px";
+                    cloned.style.borderStyle = document.getElementById('border_style').value;
+                }
+
+            });
             cloned.setAttribute("id", ele.getAttribute("id") + "_cloned_" + (Math.floor(Math.random() * 10000)));
             ev.target.appendChild(cloned);
         }
