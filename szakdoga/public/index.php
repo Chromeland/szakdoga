@@ -189,10 +189,10 @@
         if(document.getElementById('borderContainerDiv').style.display === 'none'){
             $(this).css("border", "none");
         }else{
-            $(this).css("background-color", document.getElementById('border_color').value);
-            $(this).css("background-color", document.getElementById('border_size').value + "px");
-            $(this).css("background-color", document.getElementById('border_style').value);
-            $(this).css("background-color", document.getElementById('border_radius').value + "px");
+            $(this).css("border-color", document.getElementById('border_color').value);
+            $(this).css("border-width", document.getElementById('border_size').value + "px");
+            $(this).css("border-style", document.getElementById('border_style').value);
+            $(this).css("border-radius", document.getElementById('border_radius').value + "px");
         }
 
     });

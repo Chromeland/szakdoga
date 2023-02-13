@@ -102,7 +102,6 @@ function saveTextToDB () {
 }
 
 function getDataFromDB(table,id) {
-    showLoader('Read');
     let data = {
         type: 'ReadFromDB',
         Table: table,
@@ -129,7 +128,6 @@ function getDataFromDB(table,id) {
         }
 
     })
-        .always(() => hideLoader('Read'));
 }
 
 /**
