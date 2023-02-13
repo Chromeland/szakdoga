@@ -6,10 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/style/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/ToolBar.js"></script>
     <script src="./assets/js/Modifier.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="module" src="./assets/js/drag_and_drop.js"></script>
 
     <title>Szakdoga</title>
@@ -178,6 +178,24 @@
         <a>Welcome to my webpage!</a>
     </form>
 </div>
+<script>
+    $("#Background").on("mouseover", ".cloned", function() {
+        $(this).css("border-color", "red");
+        $(this).css("border-width", "1px");
+        $(this).css("border-style", "Solid");
+    });
 
+    $("#Background").on("mouseleave", ".cloned", function() {
+        if(document.getElementById('borderContainerDiv').style.display === 'none'){
+            $(this).css("border", "none");
+        }else{
+            $(this).css("background-color", document.getElementById('border_color').value);
+            $(this).css("background-color", document.getElementById('border_size').value + "px");
+            $(this).css("background-color", document.getElementById('border_style').value);
+            $(this).css("background-color", document.getElementById('border_radius').value + "px");
+        }
+
+    });
+</script>
 </body>
 </html>
