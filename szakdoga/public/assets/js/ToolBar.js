@@ -112,3 +112,66 @@ function ondragendHandler(ev) {
 
     ev.target.removeAttribute("style");
 }
+
+window.onload = function() {
+    const imagesContainer = document.getElementById("images_container");
+
+    const image = document.querySelector("#image");
+
+    const inputImage = document.createElement("input");
+    inputImage.setAttribute("type", "file");
+    inputImage.setAttribute("accept", "image/*");
+    inputImage.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            const img = new Image();
+            img.src = event.target.result;
+            img.onload = () => {
+                let width = img.width;
+                let height = img.height;
+                let maxWidth = 50;
+                let maxHeight = 50;
+                let ratio = 0;
+
+                if (width > height) {
+                    ratio = maxWidth / width;
+                    height = height * ratio;
+                    width = maxWidth;
+                } else {
+                    ratio = maxHeight / height;
+                    width = width * ratio;
+                    height = maxHeight;
+                }
+
+                let canvas = document.createElement("canvas");
+                canvas.width = width;
+                canvas.height = height;
+                let ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, width, height);
+                let resizedImage = canvas.toDataURL();
+                image.firstElementChild.src = resizedImage;
+                image.style.display = "block";
+            };
+        };
+        reader.readAsDataURL(file);
+    });
+
+    const video = document.querySelector("#video");
+    const inputVideo = document.createElement("input");
+    inputVideo.setAttribute("type", "file");
+    inputVideo.setAttribute("accept", "video/*");
+    inputVideo.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            const videoURL = URL.createObjectURL(file);
+            video.firstElementChild.src = videoURL;
+            video.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+    });
+
+    imagesContainer.appendChild(inputImage);
+    imagesContainer.appendChild(inputVideo);
+};
