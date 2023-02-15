@@ -164,6 +164,20 @@ input{
     width: 50%;
 }
 
+.srcInput{
+    background-color: #4CAF50; /* Green background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 15px 32px; /* Padding */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Display as a block element */
+    font-size: 16px; /* Font size */
+    margin: 4px 2px; /* Add some margin */
+    cursor: pointer; /* Add a cursor on hover */
+    border-radius: 10px; /* Rounded corners */
+}
+
 #borderDiv{
     padding-top: 15px;
 }

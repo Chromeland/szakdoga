@@ -119,6 +119,8 @@ window.onload = function() {
     const image = document.querySelector("#image");
 
     const inputImage = document.createElement("input");
+    inputImage.setAttribute('id','imageInput');
+    inputImage.setAttribute("class", "srcInput");
     inputImage.setAttribute("type", "file");
     inputImage.setAttribute("accept", "image/*");
     inputImage.addEventListener("change", (event) => {
@@ -159,6 +161,8 @@ window.onload = function() {
 
     const video = document.querySelector("#video");
     const inputVideo = document.createElement("input");
+    inputVideo.setAttribute("id", "videoInput");
+    inputVideo.setAttribute("class", "srcInput");
     inputVideo.setAttribute("type", "file");
     inputVideo.setAttribute("accept", "video/*");
     inputVideo.addEventListener("change", (event) => {
