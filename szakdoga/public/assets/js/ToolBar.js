@@ -46,11 +46,8 @@ function showButtons() {
 let cloned;
 
 function dragstartHandler(ev, type) {
-    console.log('----------------ondragstart - drag started');
     ev.target.style.border = "solid";
     ev.dataTransfer.setData(type, ev.target.id);
-
-
 }
 
 function ondragHandler(ev) {
@@ -117,10 +114,8 @@ window.onload = function() {
     const imagesContainer = document.getElementById("images_container");
 
     const image = document.querySelector("#image");
-
-    const inputImage = document.createElement("input");
-    inputImage.setAttribute('id','imageInput');
-    inputImage.setAttribute("class", "srcInput");
+    let imageCount = 1;
+    const inputImage = document.getElementById("pictureUpload");
     inputImage.setAttribute("type", "file");
     inputImage.setAttribute("accept", "image/*");
     inputImage.addEventListener("change", (event) => {
@@ -154,13 +149,21 @@ window.onload = function() {
                 let resizedImage = canvas.toDataURL();
                 image.firstElementChild.src = resizedImage;
                 image.style.display = "block";
+
+                // generate a unique ID for the image
+                let idNum = document.querySelectorAll('#container img').length + 1;
+                let id = 'image' + idNum;
+
+                // set the ID attribute after the image has been added to the container
+                image.firstElementChild.id = id;
             };
         };
         reader.readAsDataURL(file);
+        console.log(image.id);
     });
 
     const video = document.querySelector("#video");
-    const inputVideo = document.createElement("input");
+    const inputVideo = document.getElementById("videoUpload");
     inputVideo.setAttribute("id", "videoInput");
     inputVideo.setAttribute("class", "srcInput");
     inputVideo.setAttribute("type", "file");

@@ -17,7 +17,7 @@
     width: 17.5%;
     background: #f2f2f2;
     overflow: auto;
-    background-color: brown;
+    /*background-color: brown;*/
 }
 
 #modifier {
@@ -160,8 +160,16 @@ textarea{
     height: 50px;
 }
 
-input{
-    width: 50%;
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px 6px 12px;
+    margin-left: 6px;
+    cursor: pointer;
+    width: 39%;
 }
 
 .srcInput{

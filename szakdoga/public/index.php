@@ -48,6 +48,14 @@
                  ondragenter="ondragenterHandler(event)" ondragleave="ondragleaveHandler(event)">
                 <img src="" alt="">
             </div>
+            <label for="pictureUpload" class="custom-file-upload">
+                Picture Upload
+            </label>
+            <input id="pictureUpload" type="file"/>
+            <label for="videoUpload" class="custom-file-upload">
+                Video Upload
+            </label>
+            <input id="videoUpload" type="file"/>
         </div>
         <button id="shapes" onclick="showShapes()" class=toolBoxButtons>Shapes</button>
         <div id="shapes_container" style="display: none" ;>
