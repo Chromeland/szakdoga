@@ -110,6 +110,7 @@ function ondragendHandler(ev) {
     ev.target.removeAttribute("style");
 }
 
+//TODO: Képek rendes méretben való feltöltése mert így nagyon pixeles lesz,mikor felnagyítjuk, szóval ne a picit másoljuk hanem írjuk át a méreteit.
 window.onload = function() {
     const imagesContainer = document.getElementById("images_container");
 
@@ -159,7 +160,6 @@ window.onload = function() {
             };
         };
         reader.readAsDataURL(file);
-        console.log(image.id);
     });
 
     const video = document.querySelector("#video");
