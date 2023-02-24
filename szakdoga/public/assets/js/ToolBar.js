@@ -94,8 +94,9 @@ function ondragendHandler(ev) {
     let oldClass = cloned.getAttribute("id");
     cloned.removeAttribute("class");
     cloned.removeAttribute("style");
-    if (oldClass.includes("image") || oldClass.includes("shape")) {
-        cloned.style.height = "20px";
+    if (oldClass.includes("png") || oldClass.includes("jpg")) {
+        let imgID = oldClass.substr(0,oldClass.indexOf('_cloned_'));
+        cloned.src ='http://localhost/szakdolgozat/szakdoga/public/assets/pictures/' + imgID;
     }
     cloned.setAttribute("class", "cloned");
     cloned.removeAttribute('draggable');
@@ -120,6 +121,8 @@ window.onload = function() {
     inputImage.setAttribute("type", "file");
     inputImage.setAttribute("accept", "image/*");
     inputImage.addEventListener("change", (event) => {
+        const imageLastChild = document.createElement("img");
+        image.appendChild(imageLastChild);
         const file = event.target.files[0];
         const reader = new FileReader();
         reader.onload = (event) => {
@@ -148,15 +151,32 @@ window.onload = function() {
                 let ctx = canvas.getContext("2d");
                 ctx.drawImage(img, 0, 0, width, height);
                 let resizedImage = canvas.toDataURL();
-                image.firstElementChild.src = resizedImage;
+                image.lastElementChild.src = resizedImage;
                 image.style.display = "block";
 
                 // generate a unique ID for the image
-                let idNum = document.querySelectorAll('#container img').length + 1;
-                let id = 'image' + idNum;
+                let id = file['name'];
 
                 // set the ID attribute after the image has been added to the container
-                image.firstElementChild.id = id;
+                image.lastElementChild.id = id;
+
+                const data = new FormData();
+                data.append('type', 'imageMove');
+                data.append('file', file);
+                $.ajax({
+                    url: '../src/PrepareClass.php',
+                    type: 'POST',
+                    data: data,
+                    contentType: false,
+                    processData: false,
+                    success: function(result) {
+                        let objData = JSON.parse(result);
+                        if(objData === 'Error'){
+                            return null;
+                        }
+                    }
+                });
+
             };
         };
         reader.readAsDataURL(file);

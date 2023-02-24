@@ -41,7 +41,6 @@
             <div id="image" class="drag_Ex" draggable="true" ondragstart="dragstartHandler(event, 'text/html')"
                  ondrag="ondragHandler(event)" ondragend="ondragendHandler(event)"
                  ondragenter="ondragenterHandler(event)" ondragleave="ondragleaveHandler(event)">
-                <img src="" alt="">
             </div>
             <div id="video" class="drag_Ex" draggable="true" ondragstart="dragstartHandler(event, 'text/html')"
                  ondrag="ondragHandler(event)" ondragend="ondragendHandler(event)"

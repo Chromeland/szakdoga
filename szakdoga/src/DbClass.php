@@ -13,7 +13,7 @@ class DbClass
     }
 
 
-    function saveTextToDB($id,$Type,$parentElement,$posX,$posY,$innerText,$Style = 'normal',$fontFamily = 'Arial',$fontColour = 'black',$fontSize = 12,$textFloat = 'left',$opacity = 1,$borderRadius = null,$borderStyle = null,$borderSize = null,$borderColor = null)
+    public function saveTextToDB($id,$Type,$parentElement,$posX,$posY,$innerText,$Style = 'normal',$fontFamily = 'Arial',$fontColour = 'black',$fontSize = 12,$textFloat = 'left',$opacity = 1,$borderRadius = null,$borderStyle = null,$borderSize = null,$borderColor = null)
     {
         $tmp = explode("#", $id);
         $id = $tmp[0];
@@ -55,7 +55,7 @@ class DbClass
         return true;
     }
 
-    function getTextFromDB($table,$id) {
+    public function getTextFromDB($table,$id) {
         $servername = "localhost:3306";
         $username = "BenceTeszt";
         $password = "123";
@@ -87,4 +87,14 @@ class DbClass
         }
     }
 
+    public function moveUploadedPicture($file)
+    {
+        $tempFilePath = $file['tmp_name'];
+        $newFilePath = 'C:/xampp/htdocs/szakdolgozat/szakdoga/public/assets/pictures/' . $file['name'];
+        if (move_uploaded_file($tempFilePath, $newFilePath)) {
+            return true;
+        }else{
+            return "Error";
+        }
+    }
 }
