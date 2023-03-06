@@ -27,8 +27,7 @@ function saveTextToDB () {
         elem_type = "list"
     }
     let parentElement = selectedEement.parentElement.id;
-    let posX = selectedEement.getAttribute("data-x");
-    let posY = selectedEement.getAttribute("data-y");
+    let position = selectedEement.getBoundingClientRect();
     let innerText = document.getElementById('text_inner').value;
     let style = document.getElementById('text_style_select').value;
     let fontFamily = document.getElementById('text_font_family_select').value;
@@ -69,13 +68,15 @@ function saveTextToDB () {
     }else{
         selectedEement.style.border = "none";
     }
+
+    //Localstorage is a better in this.
+
     let data = {
         type: "TextToDb",
         ID: elem_id,
         Type: elem_type,
         parentElement: parentElement,
-        posX: posX,
-        posY: posY,
+        posotion: position,
         innerText: innerText,
         style: style,
         fontFamily: fontFamily,
@@ -88,46 +89,41 @@ function saveTextToDB () {
         borderSize: borderSize,
         borderColor: borderColor
     };
+    //
+    // $.ajax({
+    //     url: '../src/PrepareClass.php',
+    //     type: "POST",
+    //     data: data
+    // })
+    //     .done((response) => {
+    //         console.log(response);
+    //     })
+    //     .always(() => );
 
-    $.ajax({
-        url: '../src/PrepareClass.php',
-        type: "POST",
-        data: data
-    })
-        .done((response) => {
-            console.log(response);
-        })
-        .always(() => hideLoader('Save'));
+    localStorage.setItem(selectedEement_id, JSON.stringify(data));
 
+    hideLoader('Save');
 }
 
-function getDataFromDB(table,id) {
-    let data = {
-        type: 'ReadFromDB',
-        Table: table,
-        ID: id
-    }
-    $.ajax({
-        url: '../src/PrepareClass.php',
-        type: "POST",
-        data: data,
-        success: function (result) {
-            let objData = JSON.parse(result);
-            if(objData === 'Error'){
-                return null;
-            }
-            document.getElementById('text_inner').value = objData[5];
-            document.getElementById('text_style_select').value = objData[6];
-            document.getElementById('text_font_family_select').value = objData[7];
-            document.getElementById('text_color').value = objData[8];
-            document.getElementById('text_size').value = objData[9];
-            document.getElementById('text_align').value = objData[10];
-            document.getElementById('text_opacity').value = objData[11];
+function getDataFromDB(id) {
 
-            console.log(objData);
+    let objData = JSON.parse(localStorage.getItem(id));
+
+    if (objData) {
+        document.getElementById('text_inner').value = objData['innerText'] ? objData['innerText'] : "";
+        document.getElementById('text_style_select').value = objData['style'] ? objData['style'] : "normal";
+        document.getElementById('text_font_family_select').value = objData['fontFamily'] ? objData['fontFamily'] : "Arial";
+        document.getElementById('text_color').value = objData['fontColor'] ? objData['fontColor'] : "#000000";
+        document.getElementById('text_size').value = objData['fontSize'] ? objData['fontSize'] : "12";
+        document.getElementById('text_align').value = objData['textFloat'] ? objData['textFloat'] : "center";
+        document.getElementById('text_opacity').value = objData['opacity'] ? objData['opacity'] : "1";
+        if (objData['borderColor']) {
+            borderRadius = document.getElementById('border_radius').value = objData['borderRadius'];
+            borderColor = document.getElementById('border_color').value = objData['borderColor'];
+            borderStyle = document.getElementById('border_style').value = objData['borderStyle'];
+            borderSize = document.getElementById('border_size').value = objData['borderSize'];
         }
-
-    })
+    }
 }
 
 /**

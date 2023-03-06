@@ -1,5 +1,3 @@
-localStorage.clear();
-
 document.addEventListener("mouseover", mouseOverDocument, false);
 document.addEventListener('click', function (e) {
     e = e || window.event;
@@ -62,7 +60,7 @@ function modifierConst(elem) {
     if (elem.id.includes("label")) {
         saveButton.setAttribute("onclick","saveTextToDB()");
         textContainer.style.display = "block";
-        getDataFromDB('texts',elem.id);
+        getDataFromDB(elem.id);
     } else if (elem.id.includes("Background")) {
         saveButton.setAttribute("onclick","saveBackgroundToDB()");
         backgroundContainer.style.display = "block";
