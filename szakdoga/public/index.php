@@ -193,13 +193,13 @@
     });
 
     $("#Background").on("mouseleave", ".cloned", function() {
-        if(document.getElementById('borderContainerDiv').style.display === 'none'){
-            $(this).css("border", "none");
+        if(localStorage.getItem(event.target.id) && JSON.parse(localStorage.getItem(event.target.id)).borderColor){
+            $(this).css("border-color", JSON.parse(localStorage.getItem(event.target.id)).borderColor);
+            $(this).css("border-width", JSON.parse(localStorage.getItem(event.target.id)).borderSize + "px");
+            $(this).css("border-style", JSON.parse(localStorage.getItem(event.target.id)).borderStyle);
+            $(this).css("border-radius", JSON.parse(localStorage.getItem(event.target.id)).borderRadius + "px");
         }else{
-            $(this).css("border-color", document.getElementById('border_color').value);
-            $(this).css("border-width", document.getElementById('border_size').value + "px");
-            $(this).css("border-style", document.getElementById('border_style').value);
-            $(this).css("border-radius", document.getElementById('border_radius').value + "px");
+            $(this).css("border", "none");
         }
 
     });

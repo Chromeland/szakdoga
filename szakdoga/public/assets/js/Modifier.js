@@ -7,7 +7,7 @@ function saveTextToDB () {
         return false;
     }
 
-    showLoader('Save');
+    // showLoader('Save');
     let elem_id = element.children[0].id;
     let selectedEement_id = elem_id.substring(0, elem_id.indexOf("#"));
     let selectedEement = document.getElementById(selectedEement_id);
@@ -102,7 +102,7 @@ function saveTextToDB () {
 
     localStorage.setItem(selectedEement_id, JSON.stringify(data));
 
-    hideLoader('Save');
+    // hideLoader('Save');
 }
 
 function getDataFromDB(id) {
