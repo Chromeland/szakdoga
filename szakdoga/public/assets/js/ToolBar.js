@@ -120,6 +120,7 @@ window.onload = function() {
     const inputImage = document.getElementById("pictureUpload");
     inputImage.setAttribute("type", "file");
     inputImage.setAttribute("accept", "image/*");
+    //TODO: delete from the image container is needed. onkeydown event for the "delete" key. needs to be added in this eventlistener and the other one too!!!
     checkExistingImages();
     inputImage.addEventListener("change", (event) => {
         const imageLastChild = document.createElement("img");
@@ -175,7 +176,6 @@ window.onload = function() {
                         if(objData === 'Error'){
                             return null;
                         }
-                        // image.lastElementChild.src = objData;
                     }
                 });
 
