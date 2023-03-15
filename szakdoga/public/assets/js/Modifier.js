@@ -12,20 +12,6 @@ function saveTextToDB () {
     let selectedEement_id = elem_id.substring(0, elem_id.indexOf("#"));
     let selectedEement = document.getElementById(selectedEement_id);
 
-    let elem_type;
-    if (selectedEement_id.includes('label')) {
-        elem_type = "label";
-    } else if (selectedEement_id.includes('Background')) {
-        elem_type = "background";
-    } else if (selectedEement_id.includes('button')) {
-        elem_type = "button";
-    } else if (selectedEement_id.includes('image')) {
-        elem_type = "image";
-    } else if (selectedEement_id.includes('shape')) {
-        elem_type = "shape";
-    } else {
-        elem_type = "list"
-    }
     let parentElement = selectedEement.parentElement.id;
     let position = selectedEement.getBoundingClientRect();
     let innerText = document.getElementById('text_inner').value;
@@ -34,7 +20,7 @@ function saveTextToDB () {
     let fontColor = document.getElementById('text_color').value;
     let fontSize = document.getElementById('text_size').value ? document.getElementById('text_size').value : 12;
     let textAlign = document.getElementById('text_align').value;
-    let opacity = document.getElementById('text_opacity').value ? document.getElementById('text_opacity').value : 1;
+    let opacity = document.getElementById('text_opacity').value / 100;
     let borderCheck = document.getElementById('text_border').checked;
     let borderRadius;
     let borderColor;
@@ -72,9 +58,9 @@ function saveTextToDB () {
     //Localstorage is a better in this.
 
     let data = {
-        type: "TextToDb",
+        // type: "TextToDb",
         ID: elem_id,
-        Type: elem_type,
+        Type: "Label",
         parentElement: parentElement,
         posotion: position,
         innerText: innerText,
@@ -103,6 +89,33 @@ function saveTextToDB () {
     localStorage.setItem(selectedEement_id, JSON.stringify(data));
 
     // hideLoader('Save');
+}
+function savePictureToDB(){
+    let element = document.getElementById("imageContainer");
+    if (!element) {
+        return false;
+    }
+
+    let elem_id = element.children[0].id;
+    let selectedEement_id = elem_id.substring(0, elem_id.indexOf("#"));
+    let selectedEement = document.getElementById(selectedEement_id);
+
+    let parentElement = selectedEement.parentElement.id;
+    let position = selectedEement.getBoundingClientRect();
+    let opacity = document.getElementById('image_opacity').value / 100;
+
+    selectedEement.style.opacity = opacity;
+
+    let data = {
+        // type: 'imageToDB',
+        ID: elem_id,
+        Type: "Image",
+        parentElement: parentElement,
+        posotion: position,
+        opacity: opacity,
+    };
+
+    localStorage.setItem(selectedEement_id, JSON.stringify(data));
 }
 
 function getDataFromDB(id) {

@@ -11,6 +11,9 @@ document.addEventListener('click', function (e) {
     }
 }, false);
 
+
+//TODO: Elements from local storage load on refresh and on page load.
+
 function showOrHideDropdownMenu(isShow = true) {
     for (let ctn of document.querySelectorAll('.dropdown-content')) {
         ctn.style.display = isShow ? 'block' : 'none';
@@ -54,15 +57,22 @@ function modifierConst(elem) {
     textContainer.style.display = "none";
     let backgroundContainer = document.getElementById('backgroundContainer');
     backgroundContainer.style.display = "none";
+    let imageContainer = document.getElementById('imageContainer');
+    imageContainer.style.display = "none";
 
-    textContainer.children[0].setAttribute("id", elem.id + "#mody");
-    textContainer.children[0].setAttribute("class", "SelectedElement");
     if (elem.id.includes("label")) {
         saveButton.setAttribute("onclick","saveTextToDB()");
+        textContainer.children[0].setAttribute("id", elem.id + "#mody");
+        textContainer.children[0].setAttribute("class", "SelectedElement");
         textContainer.style.display = "block";
         getDataFromDB(elem.id);
     } else if (elem.id.includes("Background")) {
         saveButton.setAttribute("onclick","saveBackgroundToDB()");
         backgroundContainer.style.display = "block";
+    }else if(elem.id.includes('image')){
+        saveButton.setAttribute("onclick","savePictureToDB()");
+        imageContainer.children[0].setAttribute("id", elem.id + "#mody");
+        imageContainer.children[0].setAttribute("class", "SelectedElement");
+        imageContainer.style.display = "block";
     }
 }
