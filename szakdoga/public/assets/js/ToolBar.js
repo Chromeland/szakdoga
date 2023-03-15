@@ -96,7 +96,8 @@ function ondragendHandler(ev) {
     cloned.removeAttribute("style");
     if (oldClass.includes("png") || oldClass.includes("jpg")) {
         let imgID = oldClass.substr(0,oldClass.indexOf('_cloned_'));
-        cloned.src ='http://localhost/szakdolgozat/szakdoga/public/assets/pictures/' + imgID;
+        cloned.src ='https://localhost/szakdolgozat/szakdoga/public/assets/pictures/' + imgID;
+        cloned.id = 'image' + oldClass.substring(oldClass.indexOf("_cloned_"));
     }
     cloned.setAttribute("class", "cloned");
     cloned.removeAttribute('draggable');
@@ -119,6 +120,7 @@ window.onload = function() {
     const inputImage = document.getElementById("pictureUpload");
     inputImage.setAttribute("type", "file");
     inputImage.setAttribute("accept", "image/*");
+    checkExistingImages();
     inputImage.addEventListener("change", (event) => {
         const imageLastChild = document.createElement("img");
         image.appendChild(imageLastChild);
@@ -173,6 +175,7 @@ window.onload = function() {
                         if(objData === 'Error'){
                             return null;
                         }
+                        // image.lastElementChild.src = objData;
                     }
                 });
 
@@ -201,3 +204,53 @@ window.onload = function() {
     imagesContainer.appendChild(inputImage);
     imagesContainer.appendChild(inputVideo);
 };
+
+function checkExistingImages() {
+    $.ajax({
+        url: '../src/PrepareClass.php',
+        type: 'POST',
+        data: data = {
+            type: 'checkImages',
+            directory: 'C:/xampp/htdocs/szakdolgozat/szakdoga/public/assets/pictures'
+        },
+        success: function(result) {
+            let objData = JSON.parse(result);
+            if (objData !== 'Error' && objData.length > 0) {
+                // If there are existing images, create small versions of them
+                objData.forEach(imageName => {
+                    const img = new Image();
+                    img.src = `/szakdolgozat/szakdoga/public/assets/pictures/${imageName}`;
+                    img.onload = () => {
+                        let width = img.width;
+                        let height = img.height;
+                        let maxWidth = 50;
+                        let maxHeight = 50;
+                        let ratio = 0;
+
+                        if (width > height) {
+                            ratio = maxWidth / width;
+                            height = height * ratio;
+                            width = maxWidth;
+                        } else {
+                            ratio = maxHeight / height;
+                            width = width * ratio;
+                            height = maxHeight;
+                        }
+
+                        let canvas = document.createElement("canvas");
+                        canvas.width = width;
+                        canvas.height = height;
+                        let ctx = canvas.getContext("2d");
+                        ctx.drawImage(img, 0, 0, width, height);
+                        let resizedImage = canvas.toDataURL();
+                        const newImage = document.createElement("img");
+                        newImage.src = resizedImage;
+                        newImage.id = imageName;
+                        image.appendChild(newImage);
+                        image.style.display = "block";
+                    }
+                });
+            }
+        }
+    });
+}
