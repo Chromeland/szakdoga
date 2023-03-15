@@ -133,7 +133,8 @@
         </div>
         <div>
             <h4 class="mody_label">Text Opacity</h4>
-            <input id="text_opacity" type="number">
+            <input type="range" id="text_opacity" name="vol" min="0" max="100" value="100">
+            <label for="text_opacity">100%</label>
         </div>
         <div id="borderDiv">
             <label for="text_border" id="text_border_label">Border</label>
@@ -169,6 +170,14 @@
             </div>
         </div>
     </div>
+    <div id="imageContainer" class="modifierFieldContainer" style="display: none">
+        <h3 id="label_settings">Image Settings</h3>
+        <div>
+            <h4 class="mody_label">Image Opacity</h4>
+            <input type="range" id="image_opacity" name="vol" min="0" max="100" value="100">
+            <label for="image_opacity">100%</label>
+        </div>
+    </div>
 </div>
 <div id="Background" class="Background" ondrop="ondropHandler(event)" ondragover="ondragOverHandler(event)">
 
@@ -178,8 +187,8 @@
 <div id="toolBoxFromModifier"></div>
 <div class="dropdown-content" onclick="showOrHideDropdownMenu(false)">
     <form>
-        <a>Write this </a>
-        <a>Welcome to my webpage!</a>
+        <a>New Page</a><!-- Local storage delete!-->
+        <a>Save my page!</a> <!-- Save to file-->
         <a>Welcome to my webpage!</a>
         <a>Welcome to my webpage!</a>
         <a>Welcome to my webpage!</a>
@@ -201,7 +210,20 @@
         }else{
             $(this).css("border", "none");
         }
+    });
 
+    const rangeInputImage = document.getElementById("image_opacity");
+    const rangeLabelImage = document.querySelector("label[for='image_opacity']");
+
+    rangeInputImage.addEventListener("input", () => {
+        rangeLabelImage.textContent = rangeInputImage.value + "%";
+    });
+
+    const rangeInputText = document.getElementById("image_opacity");
+    const rangeLabelText = document.querySelector("label[for='image_opacity']");
+
+    rangeInputText.addEventListener("input", () => {
+        rangeLabelText.textContent = rangeInputText.value + "%";
     });
 </script>
 </body>
