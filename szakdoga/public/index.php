@@ -42,19 +42,13 @@
                  ondrag="ondragHandler(event)" ondragend="ondragendHandler(event)"
                  ondragenter="ondragenterHandler(event)" ondragleave="ondragleaveHandler(event)">
             </div>
-            <div id="video" class="drag_Ex" draggable="true" ondragstart="dragstartHandler(event, 'text/html')"
-                 ondrag="ondragHandler(event)" ondragend="ondragendHandler(event)"
-                 ondragenter="ondragenterHandler(event)" ondragleave="ondragleaveHandler(event)">
-                <img src="" alt="">
+            <div id="image_bin" class="drag_Ex" ondrop="ondropHandler(event)" ondragover="ondragOverHandler(event)">
+                <img src="./assets/icons/trash.png" alt="">
             </div>
             <label for="pictureUpload" class="custom-file-upload">
                 Picture Upload
             </label>
             <input id="pictureUpload" type="file"/>
-            <label for="videoUpload" class="custom-file-upload">
-                Video Upload
-            </label>
-            <input id="videoUpload" type="file"/>
         </div>
         <button id="shapes" onclick="showShapes()" class=toolBoxButtons>Shapes</button>
         <div id="shapes_container" style="display: none" ;>

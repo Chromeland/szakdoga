@@ -84,6 +84,22 @@ function ondropHandler(ev) {
             cloned = ele.cloneNode(true);
             cloned.setAttribute("id", ele.getAttribute("id") + "_cloned_" + (Math.floor(Math.random() * 10000)));
             ev.target.appendChild(cloned);
+        }else if(ev.target.id === 'image.bin' || ev.target.parentNode.id === 'image_bin') {
+            dataVal = ev.dataTransfer.getData("text/html");
+            ele = document.getElementById(dataVal);
+            $.ajax({
+                url: '../src/PrepareClass.php',
+                type: 'POST',
+                data: data = {
+                    type: 'imageDelete',
+                    picName:dataVal
+                },
+                success: function (result) {
+                    if(result.includes('successfully')){
+                        ele.remove();
+                    }
+                }
+            });
         }
     } catch (err) {
         console.error(err);
@@ -120,7 +136,6 @@ window.onload = function() {
     const inputImage = document.getElementById("pictureUpload");
     inputImage.setAttribute("type", "file");
     inputImage.setAttribute("accept", "image/*");
-    //TODO: delete from the image container is needed. onkeydown event for the "delete" key. needs to be added in this eventlistener and the other one too!!!
     checkExistingImages();
     inputImage.addEventListener("change", (event) => {
         const imageLastChild = document.createElement("img");
@@ -184,25 +199,25 @@ window.onload = function() {
         reader.readAsDataURL(file);
     });
 
-    const video = document.querySelector("#video");
-    const inputVideo = document.getElementById("videoUpload");
-    inputVideo.setAttribute("id", "videoInput");
-    inputVideo.setAttribute("class", "srcInput");
-    inputVideo.setAttribute("type", "file");
-    inputVideo.setAttribute("accept", "video/*");
-    inputVideo.addEventListener("change", (event) => {
-        const file = event.target.files[0];
-        const reader = new FileReader();
-        reader.onload = (event) => {
-            const videoURL = URL.createObjectURL(file);
-            video.firstElementChild.src = videoURL;
-            video.style.display = "block";
-        };
-        reader.readAsDataURL(file);
-    });
+    // const video = document.querySelector("#video");
+    // const inputVideo = document.getElementById("videoUpload");
+    // inputVideo.setAttribute("id", "videoInput");
+    // inputVideo.setAttribute("class", "srcInput");
+    // inputVideo.setAttribute("type", "file");
+    // inputVideo.setAttribute("accept", "video/*");
+    // inputVideo.addEventListener("change", (event) => {
+    //     const file = event.target.files[0];
+    //     const reader = new FileReader();
+    //     reader.onload = (event) => {
+    //         const videoURL = URL.createObjectURL(file);
+    //         video.firstElementChild.src = videoURL;
+    //         video.style.display = "block";
+    //     };
+    //     reader.readAsDataURL(file);
+    // });
 
     imagesContainer.appendChild(inputImage);
-    imagesContainer.appendChild(inputVideo);
+    // imagesContainer.appendChild(inputVideo);
 };
 
 function checkExistingImages() {

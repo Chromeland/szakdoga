@@ -137,6 +137,18 @@
     touch-action: none;
 }
 
+#image_bin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#image_bin img {
+    height: 50px;
+    width: 50px;
+}
+
+
 .cloned {
     border: 1px solid black;
     width: 15%;
@@ -169,7 +181,7 @@ input[type="file"] {
     padding: 6px 12px 6px 12px;
     margin-left: 6px;
     cursor: pointer;
-    width: 39%;
+    width: 35%;
 }
 
 .srcInput{

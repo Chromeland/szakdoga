@@ -11,6 +11,8 @@ if ($_POST["type"] === 'TextToDb') {
     echo(json_encode(PictureClass::moveUploadedPicture($_FILES['file'])));
 }else if($_POST['type'] === 'checkImages'){
     echo(json_encode(PictureClass::checkImages($_POST['directory'])));
+}else if($_POST['type'] === 'imageDelete'){
+    echo(json_encode(PictureClass::deleteImage($_POST['picName'])));
 }
 else {
     echo("Something went wrong!");
