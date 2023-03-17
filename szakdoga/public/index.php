@@ -43,7 +43,7 @@
                  ondragenter="ondragenterHandler(event)" ondragleave="ondragleaveHandler(event)">
             </div>
             <div id="image_bin" class="drag_Ex" ondrop="ondropHandler(event)" ondragover="ondragOverHandler(event)">
-                <img src="./assets/icons/trash.png" alt="">
+                <img src="./assets/icons/bin.png" alt="">
             </div>
             <label for="pictureUpload" class="custom-file-upload">
                 Picture Upload

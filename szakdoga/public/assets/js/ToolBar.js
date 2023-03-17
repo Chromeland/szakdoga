@@ -130,7 +130,6 @@ function ondragendHandler(ev) {
 
 window.onload = function() {
     const imagesContainer = document.getElementById("images_container");
-
     const image = document.querySelector("#image");
     let imageCount = 1;
     const inputImage = document.getElementById("pictureUpload");
@@ -177,6 +176,7 @@ window.onload = function() {
                 // set the ID attribute after the image has been added to the container
                 image.lastElementChild.id = id;
 
+                showLoader('load');
                 const data = new FormData();
                 data.append('type', 'imageMove');
                 data.append('file', file);
@@ -189,8 +189,10 @@ window.onload = function() {
                     success: function(result) {
                         let objData = JSON.parse(result);
                         if(objData === 'Error'){
+                            hideLoader('load');
                             return null;
                         }
+                        hideLoader('load');
                     }
                 });
 
@@ -218,6 +220,55 @@ window.onload = function() {
 
     imagesContainer.appendChild(inputImage);
     // imagesContainer.appendChild(inputVideo);
+
+    let backGround = document.getElementById('Background');
+    const windowWidth = window.innerWidth;
+    const widthOfToolbars = windowWidth * 0.15;
+
+    for(let i = 0;i<localStorage.length;i++) {
+        const key = localStorage.key(i);
+        if (key.includes('_cloned_')) {
+            const data = JSON.parse(localStorage.getItem(key));
+            const element = document.createElement(data.Type);
+            let goodID = data.ID.substring(0, data.ID.indexOf('#'));
+            element.id = goodID;
+            if (data.Type === "p") {
+                element.innerText = data.innerText;
+                if (data.fontStyle === "Bold") {
+                    element.style.fontWeight = data.fontStyle;
+                    element.style.fontStyle = "normal";
+                } else {
+                    element.style.fontStyle = data.fontStyle;
+                    element.style.fontWeight = "normal";
+                }
+                element.style.fontFamily = data.fontFamily;
+                element.style.color = data.fontColor;
+                element.style.fontSize = data.fontSize + "px";
+                element.style.textAlign = data.textFloat;
+                element.style.opacity = data.opacity;
+                if (data.borderColor) {
+                    element.style.borderRadius = data.borderRadius + "px";
+                    element.style.borderWidth = data.borderSize + "px";
+                    element.style.borderStyle = data.borderStyle;
+                    element.style.borderColor = data.borderColor;
+                } else {
+                    element.style.border = "none";
+                }
+
+            } else if (data.Type === "img") {
+                element.src = data.src;
+                element.style.opacity = data.opacity;
+            }
+            const rect = data.position;
+            element.style.position = 'absolute';
+            element.style.transform = 'translate(' + (rect.x - widthOfToolbars) + 'px,' + (rect.y - 24) + 'px)';
+            element.setAttribute('data-x',(rect.x - widthOfToolbars) + 'px');
+            element.setAttribute('data-y',(rect.y - 24) + 'px');
+            element.style.width = rect.width + 'px';
+            element.style.height = rect.height + 'px';
+            backGround.appendChild(element);
+        }
+    }
 };
 
 function checkExistingImages() {

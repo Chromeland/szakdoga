@@ -11,9 +11,6 @@ document.addEventListener('click', function (e) {
     }
 }, false);
 
-
-//TODO: Elements from local storage load on refresh and on page load.
-
 function showOrHideDropdownMenu(isShow = true) {
     for (let ctn of document.querySelectorAll('.dropdown-content')) {
         ctn.style.display = isShow ? 'block' : 'none';

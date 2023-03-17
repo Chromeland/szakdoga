@@ -60,9 +60,9 @@ function saveTextToDB () {
     let data = {
         // type: "TextToDb",
         ID: elem_id,
-        Type: "Label",
+        Type: "p",
         parentElement: parentElement,
-        posotion: position,
+        position: position,
         innerText: innerText,
         style: style,
         fontFamily: fontFamily,
@@ -103,15 +103,17 @@ function savePictureToDB(){
     let parentElement = selectedEement.parentElement.id;
     let position = selectedEement.getBoundingClientRect();
     let opacity = document.getElementById('image_opacity').value / 100;
+    let src = selectedEement.src;
 
     selectedEement.style.opacity = opacity;
 
     let data = {
         // type: 'imageToDB',
         ID: elem_id,
-        Type: "Image",
+        Type: "img",
+        src: src,
         parentElement: parentElement,
-        posotion: position,
+        position: position,
         opacity: opacity,
     };
 
