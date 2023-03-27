@@ -259,7 +259,7 @@ window.onload = function() {
                 element.src = data.src;
                 element.style.opacity = data.opacity;
             }
-            //TODO: Something little off with the positions.
+            //TODO: Label y is not good cuz of the text font..
             const rect = data.position;
             element.style.position = 'absolute';
             element.style.transform = 'translate(' + (rect.x - widthOfToolbars) + 'px,' + (rect.y - 24) + 'px)';
