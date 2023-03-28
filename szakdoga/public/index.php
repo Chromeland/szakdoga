@@ -11,6 +11,8 @@
     <script src="./assets/js/ToolBar.js"></script>
     <script src="./assets/js/Modifier.js"></script>
     <script type="module" src="./assets/js/drag_and_drop.js"></script>
+    <script src="canvas-to-blob.js"></script>
+
 
     <title>Szakdoga</title>
 </head>
@@ -182,8 +184,8 @@
 <div class="dropdown-content" onclick="showOrHideDropdownMenu(false)">
     <form>
         <a>New Page</a><!-- Local storage delete!-->
-        <a>Save my page!</a> <!-- Save to file-->
-        <a>Welcome to my webpage!</a>
+        <a onclick="saveCanvasAsHTML()">Save my page!</a> <!-- Save to file-->
+        <a onclick="isIt()">Welcome to my webpage!</a>
         <a>Welcome to my webpage!</a>
         <a>Welcome to my webpage!</a>
     </form>

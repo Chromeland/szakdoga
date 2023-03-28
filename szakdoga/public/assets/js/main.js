@@ -26,6 +26,52 @@ function mouseOverDocument(evt) {
     }
 }
 
+function saveCanvasAsHTML() {
+    let canvas = document.getElementById('Background');
+    let div = canvas;
+    let styles = window.getComputedStyle(div);
+    let html = '<!DOCTYPE html>\n';
+    html += '<html>\n<head>\n<title>Canvas Export</title>\n</head>\n<body>\n';
+    html += '<div style="';
+    html += 'width:' + div.offsetWidth + 'px;';
+    html += 'height:' + div.offsetHeight + 'px;';
+    html += 'background-image:url(' + styles.backgroundImage.replace(/"/g, '') + ');';
+    html += 'background-repeat:' + styles.backgroundRepeat + ';';
+    html += 'background-position:' + styles.backgroundPosition + ';';
+    html += 'background-size:' + styles.backgroundSize + ';';
+    html += '">\n';
+    html += div.innerHTML;
+    html += '</div>\n';
+    html += '</body>\n</html>';
+    let fileName = prompt("Enter file name:", "canvas-export.html");
+    if (fileName != null) {
+        download(fileName, html);
+    }
+}
+
+function download(filename, text) {
+    let element = document.createElement('a');
+    element.setAttribute('href', 'data:text/html;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+}
+
+
+function isIt(){
+    let canvas = document.getElementById('Background');
+    if (canvas.toDataURL) {
+        var imageDataURL = canvas.toDataURL();
+        // rest of the code
+    } else {
+        console.log("Canvas toDataURL is not supported");
+    }
+
+}
+
+
 function elementDelete(e) {
     e.target.remove();
 }
