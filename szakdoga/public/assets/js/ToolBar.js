@@ -259,7 +259,6 @@ window.onload = function() {
                 element.src = data.src;
                 element.style.opacity = data.opacity;
             }
-            //TODO: Label y is not good cuz of the text font..
             const rect = data.position;
             element.style.position = 'absolute';
             element.style.transform = 'translate(' + (rect.x - widthOfToolbars) + 'px,' + (rect.y - 24) + 'px)';
@@ -267,6 +266,8 @@ window.onload = function() {
             element.setAttribute('data-y',(rect.y - 24) + 'px');
             element.style.width = rect.width + 'px';
             element.style.height = rect.height + 'px';
+            element.style.margin = 0 + 'px';
+            element.classList.add('cloned');
             backGround.appendChild(element);
         }
     }
