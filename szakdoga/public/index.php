@@ -11,7 +11,6 @@
     <script src="./assets/js/ToolBar.js"></script>
     <script src="./assets/js/Modifier.js"></script>
     <script type="module" src="./assets/js/drag_and_drop.js"></script>
-    <script src="canvas-to-blob.js"></script>
 
 
     <title>Szakdoga</title>

@@ -61,6 +61,7 @@ function download(filename, text) {
 
 function elementDelete(e) {
     e.target.remove();
+    localStorage.removeItem(e.target.id);
 }
 
 function getSelectedElement(element) {

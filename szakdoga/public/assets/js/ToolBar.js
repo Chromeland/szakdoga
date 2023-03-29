@@ -268,6 +268,7 @@ window.onload = function() {
             element.style.height = rect.height + 'px';
             element.style.margin = 0 + 'px';
             element.classList.add('cloned');
+            element.setAttribute("ondblclick", "elementDelete(event)");
             backGround.appendChild(element);
         }
     }
