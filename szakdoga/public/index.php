@@ -57,17 +57,17 @@
                  ondrag="ondragHandler(event)" ondragend="ondragendHandler(event)"
                  ondragenter="ondragenterHandler(event)" ondragleave="ondragleaveHandler(event)"></div>
         </div>
-        <button id="lists" onclick="showLists()" class=toolBoxButtons>Lists</button>
-        <div id="lists_container" style="display: none" ;>
-            <div id="list1" class="drag_Ex" draggable="true" ondragstart="dragstartHandler(event, 'text/html')"
-                 ondrag="ondragHandler(event)" ondragend="ondragendHandler(event)"
-                 ondragenter="ondragenterHandler(event)" ondragleave="ondragleaveHandler(event)">List
-            </div>
-            <div id="list2" class="drag_Ex" draggable="true" ondragstart="dragstartHandler(event, 'text/html')"
-                 ondrag="ondragHandler(event)" ondragend="ondragendHandler(event)"
-                 ondragenter="ondragenterHandler(event)" ondragleave="ondragleaveHandler(event)">List 1
-            </div>
-        </div>
+<!--        <button id="lists" onclick="showLists()" class=toolBoxButtons>Lists</button>-->
+<!--        <div id="lists_container" style="display: none" ;>-->
+<!--            <div id="list1" class="drag_Ex" draggable="true" ondragstart="dragstartHandler(event, 'text/html')"-->
+<!--                 ondrag="ondragHandler(event)" ondragend="ondragendHandler(event)"-->
+<!--                 ondragenter="ondragenterHandler(event)" ondragleave="ondragleaveHandler(event)">List-->
+<!--            </div>-->
+<!--            <div id="list2" class="drag_Ex" draggable="true" ondragstart="dragstartHandler(event, 'text/html')"-->
+<!--                 ondrag="ondragHandler(event)" ondragend="ondragendHandler(event)"-->
+<!--                 ondragenter="ondragenterHandler(event)" ondragleave="ondragleaveHandler(event)">List 1-->
+<!--            </div>-->
+<!--        </div>-->
         <button id="buttons" onclick="showButtons()" class=toolBoxButtons>Buttons</button>
         <div id="buttons_container" style="display: none" ;>
             <button id="button1" class=drag_Ex draggable="true" ondragstart="dragstartHandler(event, 'text/html')"
