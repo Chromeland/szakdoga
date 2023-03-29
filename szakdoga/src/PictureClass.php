@@ -10,7 +10,7 @@ class PictureClass
         $newFilePath = $pictreFilePath . $file['name'];
         if (move_uploaded_file($tempFilePath, $newFilePath)) {
             return $newFilePath;
-        }else{
+        } else {
             return "Error";
         }
     }

@@ -26,7 +26,7 @@ function saveTextToDB () {
     let borderColor;
     let borderStyle;
     let borderSize;
-    if(borderCheck){
+    if (borderCheck) {
         borderRadius = document.getElementById('border_radius').value ? document.getElementById('border_radius').value : 0;
         borderColor = document.getElementById('border_color').value;
         borderStyle = document.getElementById('border_style').value;
@@ -34,12 +34,12 @@ function saveTextToDB () {
     }
 
     selectedEement.innerText = innerText;
-    if(style === "Bold"){
+    if (style === "Bold") {
         selectedEement.style.fontWeight = style;
         selectedEement.style.fontStyle = "normal";
-    }else{
+    } else {
         selectedEement.style.fontStyle = style;
-        selectedEement.style.fontWeight =  "normal";
+        selectedEement.style.fontWeight = "normal";
     }
     selectedEement.style.fontFamily = fontFamily;
     selectedEement.style.color = fontColor;
@@ -51,7 +51,7 @@ function saveTextToDB () {
         selectedEement.style.borderWidth = borderSize + "px";
         selectedEement.style.borderStyle = borderStyle;
         selectedEement.style.borderColor = borderColor;
-    }else{
+    } else {
         selectedEement.style.border = "none";
     }
 
@@ -90,7 +90,8 @@ function saveTextToDB () {
 
     // hideLoader('Save');
 }
-function savePictureToDB(){
+
+function savePictureToDB() {
     let element = document.getElementById("imageContainer");
     if (!element) {
         return false;

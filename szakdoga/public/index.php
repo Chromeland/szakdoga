@@ -174,9 +174,7 @@
         </div>
     </div>
 </div>
-<div id="Background" class="Background" ondrop="ondropHandler(event)" ondragover="ondragOverHandler(event)">
-
-</div>
+<div id="Background" class="Background" ondrop="ondropHandler(event)" ondragover="ondragOverHandler(event)"></div>
 <div id="headerFromOther"></div>
 <div id="modifiersFromMain"></div>
 <div id="toolBoxFromModifier"></div>

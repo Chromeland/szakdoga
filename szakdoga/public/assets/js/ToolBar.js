@@ -84,7 +84,7 @@ function ondropHandler(ev) {
             cloned = ele.cloneNode(true);
             cloned.setAttribute("id", ele.getAttribute("id") + "_cloned_" + (Math.floor(Math.random() * 10000)));
             ev.target.appendChild(cloned);
-        }else if(ev.target.id === 'image.bin' || ev.target.parentNode.id === 'image_bin') {
+        } else if (ev.target.id === 'image.bin' || ev.target.parentNode.id === 'image_bin') {
             dataVal = ev.dataTransfer.getData("text/html");
             ele = document.getElementById(dataVal);
             $.ajax({
@@ -92,10 +92,10 @@ function ondropHandler(ev) {
                 type: 'POST',
                 data: data = {
                     type: 'imageDelete',
-                    picName:dataVal
+                    picName: dataVal
                 },
                 success: function (result) {
-                    if(result.includes('successfully')){
+                    if (result.includes('successfully')) {
                         ele.remove();
                     }
                 }
@@ -111,8 +111,8 @@ function ondragendHandler(ev) {
     cloned.removeAttribute("class");
     cloned.removeAttribute("style");
     if (oldClass.includes("png") || oldClass.includes("jpg")) {
-        let imgID = oldClass.substr(0,oldClass.indexOf('_cloned_'));
-        cloned.src ='https://localhost/szakdolgozat/szakdoga/public/assets/pictures/' + imgID;
+        let imgID = oldClass.substr(0, oldClass.indexOf('_cloned_'));
+        cloned.src = 'https://localhost/szakdolgozat/szakdoga/public/assets/pictures/' + imgID;
         cloned.id = 'image' + oldClass.substring(oldClass.indexOf("_cloned_"));
     }
     cloned.setAttribute("class", "cloned");
@@ -186,9 +186,9 @@ window.onload = function() {
                     data: data,
                     contentType: false,
                     processData: false,
-                    success: function(result) {
+                    success: function (result) {
                         let objData = JSON.parse(result);
-                        if(objData === 'Error'){
+                        if (objData === 'Error') {
                             hideLoader('load');
                             return null;
                         }
@@ -225,7 +225,7 @@ window.onload = function() {
     const windowWidth = window.innerWidth;
     const widthOfToolbars = windowWidth * 0.15;
 
-    for(let i = 0;i<localStorage.length;i++) {
+    for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key.includes('_cloned_')) {
             const data = JSON.parse(localStorage.getItem(key));
@@ -262,8 +262,8 @@ window.onload = function() {
             const rect = data.position;
             element.style.position = 'absolute';
             element.style.transform = 'translate(' + (rect.x - widthOfToolbars) + 'px,' + (rect.y - 24) + 'px)';
-            element.setAttribute('data-x',(rect.x - widthOfToolbars) + 'px');
-            element.setAttribute('data-y',(rect.y - 24) + 'px');
+            element.setAttribute('data-x', (rect.x - widthOfToolbars) + 'px');
+            element.setAttribute('data-y', (rect.y - 24) + 'px');
             element.style.width = rect.width + 'px';
             element.style.height = rect.height + 'px';
             element.style.margin = 0 + 'px';
@@ -282,7 +282,7 @@ function checkExistingImages() {
             type: 'checkImages',
             directory: 'C:/xampp/htdocs/szakdolgozat/szakdoga/public/assets/pictures'
         },
-        success: function(result) {
+        success: function (result) {
             let objData = JSON.parse(result);
             if (objData !== 'Error' && objData.length > 0) {
                 // If there are existing images, create small versions of them

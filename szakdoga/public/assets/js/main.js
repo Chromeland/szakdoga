@@ -92,16 +92,16 @@ function modifierConst(elem) {
     imageContainer.style.display = "none";
 
     if (elem.id.includes("label")) {
-        saveButton.setAttribute("onclick","saveTextToDB()");
+        saveButton.setAttribute("onclick", "saveTextToDB()");
         textContainer.children[0].setAttribute("id", elem.id + "#mody");
         textContainer.children[0].setAttribute("class", "SelectedElement");
         textContainer.style.display = "block";
         getDataFromDB(elem.id);
     } else if (elem.id.includes("Background")) {
-        saveButton.setAttribute("onclick","saveBackgroundToDB()");
+        saveButton.setAttribute("onclick", "saveBackgroundToDB()");
         backgroundContainer.style.display = "block";
-    }else if(elem.id.includes('image')){
-        saveButton.setAttribute("onclick","savePictureToDB()");
+    } else if (elem.id.includes('image')) {
+        saveButton.setAttribute("onclick", "savePictureToDB()");
         imageContainer.children[0].setAttribute("id", elem.id + "#mody");
         imageContainer.children[0].setAttribute("class", "SelectedElement");
         imageContainer.style.display = "block";

@@ -4,7 +4,8 @@ class DbClass
 {
     private static $instance;
 
-    public static function Instance(): DbClass {
+    public static function Instance(): DbClass
+    {
         if (!self::$instance) {
             self::$instance = new self();
         }
@@ -13,7 +14,7 @@ class DbClass
     }
 
 
-    public function saveTextToDB($id,$Type,$parentElement,$posX,$posY,$innerText,$Style = 'normal',$fontFamily = 'Arial',$fontColour = 'black',$fontSize = 12,$textFloat = 'left',$opacity = 1,$borderRadius = null,$borderStyle = null,$borderSize = null,$borderColor = null)
+    public function saveTextToDB($id, $Type, $parentElement, $posX, $posY, $innerText, $Style = 'normal', $fontFamily = 'Arial', $fontColour = 'black', $fontSize = 12, $textFloat = 'left', $opacity = 1, $borderRadius = null, $borderStyle = null, $borderSize = null, $borderColor = null)
     {
         $tmp = explode("#", $id);
         $id = $tmp[0];
@@ -36,11 +37,11 @@ class DbClass
 //checking if the element already exists
         if ($rowCount < 1) {
             $add = "INSERT INTO `texts` VALUES ('" . $id . "','" . $Type . "','" . $parentElement . "','" . $posX . "','" . $posY . "','" . $innerText . "','" . $Style . "','" . $fontFamily . "','" . $fontColour . "','" . $fontSize . "','" . $textFloat . "','" . $opacity . "'";
-            if($borderColor){
+            if ($borderColor) {
                 $add .= ",'" . $borderRadius . "','" . $borderStyle . "','" . $borderSize . "','" . $borderColor . "')";
                 $conn->query($add);
                 echo "New record created successfully";
-            }else{
+            } else {
                 $add .= ",NULL,NULL,NULL,NULL)";
                 $conn->query($add);
                 echo "New record created successfully";
@@ -55,7 +56,8 @@ class DbClass
         return true;
     }
 
-    public function getTextFromDB($table,$id) {
+    public function getTextFromDB($table, $id)
+    {
         $servername = "localhost:3306";
         $username = "BenceTeszt";
         $password = "123";
@@ -77,10 +79,10 @@ class DbClass
         } else {
             $result[] = $checkIfExists->fetch_array(MYSQLI_ASSOC);
             $conn->close();
-            foreach ($result as $elements){
-                foreach ($elements as $details){
+            foreach ($result as $elements) {
+                foreach ($elements as $details) {
                     $getResult[] = $details;
-                    $retString = implode(',',$getResult);
+                    $retString = implode(',', $getResult);
                 }
             }
             return $getResult;
