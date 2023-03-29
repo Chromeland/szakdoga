@@ -185,7 +185,7 @@
     <form>
         <a>New Page</a><!-- Local storage delete!-->
         <a onclick="saveCanvasAsHTML()">Save my page!</a> <!-- Save to file-->
-        <a onclick="isIt()">Welcome to my webpage!</a>
+        <a">Welcome to my webpage!</a>
         <a>Welcome to my webpage!</a>
         <a>Welcome to my webpage!</a>
     </form>

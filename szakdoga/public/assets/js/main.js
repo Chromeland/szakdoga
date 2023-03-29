@@ -59,19 +59,6 @@ function download(filename, text) {
     document.body.removeChild(element);
 }
 
-
-function isIt(){
-    let canvas = document.getElementById('Background');
-    if (canvas.toDataURL) {
-        var imageDataURL = canvas.toDataURL();
-        // rest of the code
-    } else {
-        console.log("Canvas toDataURL is not supported");
-    }
-
-}
-
-
 function elementDelete(e) {
     e.target.remove();
 }
