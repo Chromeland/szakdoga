@@ -121,6 +121,51 @@ function savePictureToDB() {
     localStorage.setItem(selectedEement_id, JSON.stringify(data));
 }
 
+function saveButtonToDB() {
+    let element = document.getElementById("buttonContainer");
+    if (!element) {
+        return false;
+    }
+
+    let elem_id = element.children[0].id;
+    let selectedEement_id = elem_id.substring(0, elem_id.indexOf("#"));
+    let selectedEement = document.getElementById(selectedEement_id);
+    let buttonName = document.getElementById('button_name').value;
+    let buttonTextColor = document.getElementById('button_text_color').value;
+    let buttonColor = document.getElementById('button_color').value;
+    let buttonStyle = document.getElementById('button_style').value;
+    let parentElement = selectedEement.parentElement.id;
+    let position = selectedEement.getBoundingClientRect();
+
+    selectedEement.innerHTML = buttonName;
+    if(buttonStyle !== 'Basic'){
+        selectedEement.classList.add(buttonStyle);
+        selectedEement.style.background = '#3e64ff';
+        selectedEement.style.borderColor = '#3e64ff';
+        selectedEement.style.color = '#fff';
+        selectedEement.style.borderRadius = '40px';
+    }else {
+        selectedEement.style.background = buttonColor;
+        selectedEement.style.color = buttonTextColor;
+        selectedEement.style.borderRadius = '0px';
+        selectedEement.style.borderColor = 'black';
+    }
+
+    let data = {
+        // type: 'imageToDB',
+        ID: elem_id,
+        Type: "button",
+        parentElement: parentElement,
+        position: position,
+        buttonName: buttonName,
+        buttonTextColor: buttonTextColor,
+        buttonColor: buttonColor,
+        buttonStyle: buttonStyle,
+    };
+
+    localStorage.setItem(selectedEement_id, JSON.stringify(data));
+}
+
 function getDataFromDB(id) {
 
     let objData = JSON.parse(localStorage.getItem(id));

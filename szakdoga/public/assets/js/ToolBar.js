@@ -258,6 +258,16 @@ window.onload = function() {
             } else if (data.Type === "img") {
                 element.src = data.src;
                 element.style.opacity = data.opacity;
+            } else if (data.Type === "button") {
+                element.innerHTML = data.buttonName;
+                if (data.buttonStyle !== 'Basic') {
+                    element.classList.add(data.buttonStyle);
+                }else {
+                    element.style.background = data.buttonColor;
+                    element.style.color = data.buttonTextColor;
+                    element.style.borderRadius = '0px';
+                    element.style.borderColor = 'black';
+                }
             }
             const rect = data.position;
             element.style.position = 'absolute';

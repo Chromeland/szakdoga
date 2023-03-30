@@ -25,6 +25,7 @@
     </div>
 </div>
 
+<!--Toolbox-->
 <div id="toolBox">
     <div id="head">Drag and Drop ToolBox</div>
     <div>
@@ -77,6 +78,8 @@
         </div>
     </div>
 </div>
+
+<!--Modifier-->
 <div id="modifier">
     <div id="head">Selected element modifier
         <button id="SaveToDB">Save</button>
@@ -173,16 +176,35 @@
             <label for="image_opacity">100%</label>
         </div>
     </div>
+    <div id="buttonContainer" class="modifierFieldContainer" style="display: none">
+        <h3 id="label_settings">Button Settings</h3>
+        <div>
+            <h4 class="mody_label">Button Name</h4>
+            <input id="button_name" type="text" placeholder="Button">
+            <h4 class="mody_label">Button Style</h4>
+                <select id="button_style">
+                    <option id="basic_style">Basic</option>
+                    <option id="modern_style">Modern</option>
+                </select>
+            <h4 class="mody_label">Button Color</h4>
+            <input id="button_color" type="color" value="#ffffff"">
+            <h4 class="mody_label">Button Text Color</h4>
+            <input id="button_text_color" type="color">
+            <h4 class="mody_label">Function</h4>
+        </div>
+    </div>
 </div>
+
+<!--Other Elements-->
 <div id="Background" class="Background" ondrop="ondropHandler(event)" ondragover="ondragOverHandler(event)"></div>
 <div id="headerFromOther"></div>
 <div id="modifiersFromMain"></div>
 <div id="toolBoxFromModifier"></div>
 <div class="dropdown-content" onclick="showOrHideDropdownMenu(false)">
     <form>
-        <a>New Page</a><!-- Local storage delete!-->
+        <a>New Page</a><!-- Local storage delete and page refresh.!-->
         <a onclick="saveCanvasAsHTML()">Save my page!</a> <!-- Save to file-->
-        <a">Welcome to my webpage!</a>
+        <a>Welcome to my webpage!</a>
         <a>Welcome to my webpage!</a>
         <a>Welcome to my webpage!</a>
     </form>
@@ -194,16 +216,20 @@
         $(this).css("border-style", "Solid");
     });
 
-    $("#Background").on("mouseleave", ".cloned", function() {
-        if(localStorage.getItem(event.target.id) && JSON.parse(localStorage.getItem(event.target.id)).borderColor){
+    $("#Background").on("mouseleave", ".cloned", function(event) {
+        if (localStorage.getItem(event.target.id) && JSON.parse(localStorage.getItem(event.target.id)).borderColor) {
             $(this).css("border-color", JSON.parse(localStorage.getItem(event.target.id)).borderColor);
             $(this).css("border-width", JSON.parse(localStorage.getItem(event.target.id)).borderSize + "px");
             $(this).css("border-style", JSON.parse(localStorage.getItem(event.target.id)).borderStyle);
             $(this).css("border-radius", JSON.parse(localStorage.getItem(event.target.id)).borderRadius + "px");
-        }else{
+        } else if (event.target.id.includes('button')) {
+            //TODO: Ezt meg kellene oldani hogy ne legyen mindig kék hanem függjön a style-tól
+            $(this).css("border-color", "#3e64ff");
+        } else {
             $(this).css("border", "none");
         }
     });
+
 
     const rangeInputImage = document.getElementById("image_opacity");
     const rangeLabelImage = document.querySelector("label[for='image_opacity']");

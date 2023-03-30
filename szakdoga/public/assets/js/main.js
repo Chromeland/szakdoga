@@ -4,7 +4,7 @@ document.addEventListener('click', function (e) {
     var target = e.target,
         elem = target;
     if (elem.id === "Background" || elem.parentElement.id === "Background" || elem.parentElement.id.includes("cloned")) {
-        getSelectedElement(elem)
+        getSelectedElement(elem);
         modifierConst(elem);
     }else if(elem.id === "text_border"){
         (document.getElementById('text_border').checked) ? borderContainerDiv.style.display = 'block' : borderContainerDiv.style.display = 'none';
@@ -90,6 +90,8 @@ function modifierConst(elem) {
     backgroundContainer.style.display = "none";
     let imageContainer = document.getElementById('imageContainer');
     imageContainer.style.display = "none";
+    let buttonContainer = document.getElementById('buttonContainer');
+    buttonContainer.style.display = "none";
 
     if (elem.id.includes("label")) {
         saveButton.setAttribute("onclick", "saveTextToDB()");
@@ -105,5 +107,12 @@ function modifierConst(elem) {
         imageContainer.children[0].setAttribute("id", elem.id + "#mody");
         imageContainer.children[0].setAttribute("class", "SelectedElement");
         imageContainer.style.display = "block";
+    } else if (elem.id.includes("button")){
+        saveButton.setAttribute("onclick", "saveButtonToDB()");
+        buttonContainer.children[0].setAttribute("id", elem.id + "#mody");
+        buttonContainer.children[0].setAttribute("class", "SelectedElement");
+        let buttonName = document.getElementById('button_name');
+        buttonName.value = elem.innerHTML;
+        buttonContainer.style.display = "block";
     }
 }
