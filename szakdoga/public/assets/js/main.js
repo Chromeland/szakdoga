@@ -118,15 +118,10 @@ function modifierConst(elem) {
 }
 
 function newProject() {
-    // Ask for user confirmation
-    var confirmation = confirm("Are you sure you want to create a new page? This will delete all data and files associated with the current project.");
+    let confirmation = confirm("Are you sure you want to create a new page? This will delete all data and files associated with the current project.");
 
     if (confirmation) {
-        // Clear localStorage
         localStorage.clear();
-
-        // Clear a folder on a specified path
-        // Replace '/path/to/folder' with the actual path to your folder
         $.ajax({
             url: '../src/PrepareClass.php',
             type: 'POST',
@@ -136,7 +131,6 @@ function newProject() {
             },
             success: function (result) {
                 if (result !== 'Error') {
-                    // Refresh the page
                     location.reload();
                 } else{
                     alert('The pictures folder is missing!');

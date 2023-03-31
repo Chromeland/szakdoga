@@ -262,8 +262,8 @@
         rangeLabelImage.textContent = rangeInputImage.value + "%";
     });
 
-    const rangeInputText = document.getElementById("image_opacity");
-    const rangeLabelText = document.querySelector("label[for='image_opacity']");
+    const rangeInputText = document.getElementById("text_opacity");
+    const rangeLabelText = document.querySelector("label[for='text_opacity']");
 
     rangeInputText.addEventListener("input", () => {
         rangeLabelText.textContent = rangeInputText.value + "%";

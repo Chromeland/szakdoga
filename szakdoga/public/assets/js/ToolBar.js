@@ -147,6 +147,7 @@ window.onload = function() {
         } else if (selectedPageOption === "file") {
             document.getElementById("url_option").style.display = "none";
             document.getElementById("file_option").style.display = "block";
+            document.getElementById("goto_file").style.display = "block";
         }
     });
 
