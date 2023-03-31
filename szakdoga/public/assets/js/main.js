@@ -123,6 +123,7 @@ function modifierConst(elem) {
         textContainer.style.display = "block";
         getDataFromDB(elem.id);
     } else if (elem.id.includes("Background")) {
+        //TODO: Background needs some editing features (color)
         saveButton.setAttribute("onclick", "saveBackgroundToDB()");
         backgroundContainer.style.display = "block";
     } else if (elem.id.includes('image')) {
