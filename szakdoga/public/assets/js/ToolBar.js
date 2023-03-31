@@ -282,6 +282,7 @@ window.onload = function() {
                 element.src = data.src;
                 element.style.opacity = data.opacity;
             } else if (data.Type === "button") {
+                //TODO: Need to set the Modifier values too!!!
                 element.innerHTML = data.buttonName;
                 element.setAttribute('onlcick','');
                 if (data.buttonStyle !== 'Basic') {
