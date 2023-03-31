@@ -164,8 +164,10 @@ function saveButtonToDB() {
             let URL = "window.location.href = '" + goTo + "';";
             selectedElement.setAttribute('onclick', URL);
         }else if (destinationType === 'file'){
-            goTo = document.getElementById('goto_file').value;
-            selectedElement.setAttribute('onclick','console.log("még nem jó")');
+            let fileInput = document.getElementById('goto_file');
+            let selectedFile = fileInput.files[0]['name'];
+            goTo = 'file:///C:/xampp/htdocs/szakdolgozat/szakdoga/public/assets/saved_pages/' + selectedFile;
+            selectedElement.setAttribute('onclick', "window.location.href = '" + goTo + "'");
         }
     }
 

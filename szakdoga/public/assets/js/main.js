@@ -26,12 +26,12 @@ function mouseOverDocument(evt) {
     }
 }
 
-function saveCanvasAsHTML() {
+async function saveCanvasAsHTML() {
     let canvas = document.getElementById('Background');
     let div = canvas;
     let styles = window.getComputedStyle(div);
     let html = '<!DOCTYPE html>\n';
-    html += '<html>\n<head>\n<title>Canvas Export</title>\n</head>\n<body>\n';
+    html += '<html>\n<head>\n<title>Webpage</title>\n</head>\n<body>\n';
     html += '<div style="';
     html += 'width:' + div.offsetWidth + 'px;';
     html += 'height:' + div.offsetHeight + 'px;';
@@ -43,21 +43,44 @@ function saveCanvasAsHTML() {
     html += div.innerHTML;
     html += '</div>\n';
     html += '</body>\n</html>';
-    let fileName = prompt("Enter file name:", "canvas-export.html");
-    if (fileName != null) {
-        download(fileName, html);
+    let fileName = prompt("Enter file name:", "Webpage.html");
+    if (fileName !== null) {
+        if (!fileName.endsWith('.html')) {
+            fileName += '.html';
+        }
+        await download(fileName, html);
+        // Now that the file has been downloaded, you can move it to a specified folder here
+        $.ajax({
+            url: '../src/PrepareClass.php',
+            type: 'POST',
+            data: data = {
+                type: 'HTMLMove',
+                fileName: fileName,
+                path: 'C:/xampp/htdocs/szakdolgozat/szakdoga/public/assets/saved_pages'
+            },
+            success: function (result) {
+                if (!result) {
+                    console.log("Sometihng went wrong!!!");
+                }
+            }
+        });
     }
 }
 
-function download(filename, text) {
-    let element = document.createElement('a');
-    element.setAttribute('href', 'data:text/html;charset=utf-8,' + encodeURIComponent(text));
-    element.setAttribute('download', filename);
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
+
+async function download(filename, text) {
+    return new Promise((resolve, reject) => {
+        let element = document.createElement('a');
+        element.setAttribute('href', 'data:text/html;charset=utf-8,' + encodeURIComponent(text));
+        element.setAttribute('download', filename);
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+        resolve();
+    });
 }
+
 
 function elementDelete(e) {
     e.target.remove();
