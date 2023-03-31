@@ -41,4 +41,22 @@ class PictureClass
             return 'Picture not found.';
         }
     }
+
+    public static function newProject($folder): string
+    {
+        if (!$folder){
+            return 'Error';
+        }
+
+        $files = glob($folder . '/*');
+        foreach ($files as $file) {
+            if (basename($file) === '.gitignore') {
+                continue;
+            }
+            else if (is_file($file)) {
+                unlink($file);
+            }
+        }
+        return 'Success';
+    }
 }

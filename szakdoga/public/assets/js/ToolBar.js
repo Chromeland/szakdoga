@@ -84,6 +84,43 @@ function ondropHandler(ev) {
             cloned = ele.cloneNode(true);
             cloned.setAttribute("id", ele.getAttribute("id") + "_cloned_" + (Math.floor(Math.random() * 10000)));
             ev.target.appendChild(cloned);
+            if(cloned.id.includes('button')){
+                document.getElementById("action-select").addEventListener("change", () => {
+                    let selectedAction = document.getElementById("action-select").value;
+                    if (selectedAction === "close") {
+                        document.getElementById("page-options").style.display = "none";
+                    } else if (selectedAction === "page") {
+                        document.getElementById("page-options").style.display = "block";
+                    }
+                });
+
+                document.getElementById("page-select").addEventListener("change", () => {
+                    let selectedPageOption = document.getElementById("page-select").value;
+                    if (selectedPageOption === "url") {
+                        document.getElementById("url-option").style.display = "block";
+                        document.getElementById("file-option").style.display = "none";
+                    } else if (selectedPageOption === "file") {
+                        document.getElementById("url-option").style.display = "none";
+                        document.getElementById("file-option").style.display = "block";
+                    }
+                });
+
+                document.getElementById("action-button").addEventListener("click", () => {
+                    let selectedAction = document.getElementById("action-select").value;
+                    if (selectedAction === "close") {
+                        window.close();
+                    } else if (selectedAction === "page") {
+                        let selectedPageOption = document.getElementById("page-select").value;
+                        if (selectedPageOption === "url") {
+                            let url = document.getElementById("url-input").value;
+                            window.location.href = url;
+                        } else if (selectedPageOption === "file") {
+                            let file = document.getElementById("file-input").files[0];
+                            // handle file upload
+                        }
+                    }
+                });
+            }
         } else if (ev.target.id === 'image.bin' || ev.target.parentNode.id === 'image_bin') {
             dataVal = ev.dataTransfer.getData("text/html");
             ele = document.getElementById(dataVal);

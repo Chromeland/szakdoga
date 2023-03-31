@@ -13,6 +13,8 @@ if ($_POST["type"] === 'TextToDb') {
     echo(json_encode(PictureClass::checkImages($_POST['directory'])));
 } else if($_POST['type'] === 'imageDelete') {
     echo(json_encode(PictureClass::deleteImage($_POST['picName'])));
+}else if($_POST['type'] === 'imageFolderClear'){
+    echo(json_encode(PictureClass::newProject($_POST['folder'])));
 }
 else {
     echo("Something went wrong!");

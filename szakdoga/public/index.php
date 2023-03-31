@@ -191,6 +191,32 @@
             <h4 class="mody_label">Button Text Color</h4>
             <input id="button_text_color" type="color">
             <h4 class="mody_label">Function</h4>
+            <div>
+                <label for="action-select">Action:</label>
+                <select id="action-select">
+                    <option value="close">Close</option>
+                    <option value="page">Go to page</option>
+                </select>
+            </div>
+            <div id="page-options" style="display: none;">
+                <div>
+                    <label for="page-select">Page option:</label>
+                    <select id="page-select">
+                        <option value="url">URL:</option>
+                        <option value="file">HTML file:</option>
+                    </select>
+                </div>
+                <div id="url-option">
+                    <label for="url-input">URL:</label>
+                    <input type="text" id="url-input">
+                </div>
+                <div id="file-option" style="display: none;">
+                    <label for="file-input">HTML file:</label>
+                    <input type="file" id="file-input">
+                </div>
+            </div>
+            <button id="action-button">Perform action</button>
+
         </div>
     </div>
 </div>
@@ -202,7 +228,7 @@
 <div id="toolBoxFromModifier"></div>
 <div class="dropdown-content" onclick="showOrHideDropdownMenu(false)">
     <form>
-        <a>New Page</a><!-- Local storage delete and page refresh.!-->
+        <a onclick="newProject()">New Page</a><!-- Local storage delete and page refresh.!-->
         <a onclick="saveCanvasAsHTML()">Save my page!</a> <!-- Save to file-->
         <a>Welcome to my webpage!</a>
         <a>Welcome to my webpage!</a>
