@@ -192,31 +192,29 @@
             <input id="button_text_color" type="color">
             <h4 class="mody_label">Function</h4>
             <div>
-                <label for="action-select">Action:</label>
-                <select id="action-select">
+                <label for="action_select">Action:</label>
+                <select id="action_select">
                     <option value="close">Close</option>
                     <option value="page">Go to page</option>
                 </select>
             </div>
-            <div id="page-options" style="display: none;">
+            <div id="page_options" style="display: none;">
                 <div>
-                    <label for="page-select">Page option:</label>
-                    <select id="page-select">
-                        <option value="url">URL:</option>
-                        <option value="file">HTML file:</option>
+                    <label for="page_select">Page option:</label>
+                    <select id="page_select">
+                        <option value="url">URL</option>
+                        <option value="file">HTML file</option>
                     </select>
                 </div>
-                <div id="url-option">
+                <div id="url_option">
                     <label for="url-input">URL:</label>
-                    <input type="text" id="url-input">
+                    <input type="text" id="goto_url">
                 </div>
-                <div id="file-option" style="display: none;">
+                <div id="file_option" style="display: none;">
                     <label for="file-input">HTML file:</label>
-                    <input type="file" id="file-input">
+                    <input type="file" id="goto_file">
                 </div>
             </div>
-            <button id="action-button">Perform action</button>
-
         </div>
     </div>
 </div>

@@ -128,27 +128,45 @@ function saveButtonToDB() {
     }
 
     let elem_id = element.children[0].id;
-    let selectedEement_id = elem_id.substring(0, elem_id.indexOf("#"));
-    let selectedEement = document.getElementById(selectedEement_id);
+    let selectedElement_id = elem_id.substring(0, elem_id.indexOf("#"));
+    let selectedElement = document.getElementById(selectedElement_id);
     let buttonName = document.getElementById('button_name').value;
     let buttonTextColor = document.getElementById('button_text_color').value;
     let buttonColor = document.getElementById('button_color').value;
     let buttonStyle = document.getElementById('button_style').value;
-    let parentElement = selectedEement.parentElement.id;
-    let position = selectedEement.getBoundingClientRect();
+    let parentElement = selectedElement.parentElement.id;
+    let position = selectedElement.getBoundingClientRect();
+    let buttonFunction = document.getElementById('action_select').value;
+    let goTo = "";
 
-    selectedEement.innerHTML = buttonName;
+    selectedElement.innerHTML = buttonName;
     if(buttonStyle !== 'Basic'){
-        selectedEement.classList.add(buttonStyle);
-        selectedEement.style.background = '#3e64ff';
-        selectedEement.style.borderColor = '#3e64ff';
-        selectedEement.style.color = '#fff';
-        selectedEement.style.borderRadius = '40px';
+        selectedElement.classList.add(buttonStyle);
+        selectedElement.style.background = '#3e64ff';
+        selectedElement.style.borderColor = '#3e64ff';
+        selectedElement.style.color = '#fff';
+        selectedElement.style.borderRadius = '40px';
     }else {
-        selectedEement.style.background = buttonColor;
-        selectedEement.style.color = buttonTextColor;
-        selectedEement.style.borderRadius = '0px';
-        selectedEement.style.borderColor = 'black';
+        selectedElement.style.background = buttonColor;
+        selectedElement.style.color = buttonTextColor;
+        selectedElement.style.borderRadius = '0px';
+        selectedElement.style.borderColor = 'black';
+    }
+    if(buttonFunction === 'close'){
+        selectedElement.setAttribute('onclick','window.close();');
+    }else if(buttonFunction === 'page'){
+        let destinationType = document.getElementById('page_select').value
+        if(destinationType === 'url'){
+            goTo = document.getElementById('goto_url').value;
+            if (!/^https?:\/\//i.test(goTo)) {
+                goTo = 'http://' + goTo;
+            }
+            let URL = "window.location.href = '" + goTo + "';";
+            selectedElement.setAttribute('onclick', URL);
+        }else if (destinationType === 'file'){
+            goTo = document.getElementById('goto_file').value;
+            selectedElement.setAttribute('onclick','console.log("még nem jó")');
+        }
     }
 
     let data = {
@@ -161,9 +179,11 @@ function saveButtonToDB() {
         buttonTextColor: buttonTextColor,
         buttonColor: buttonColor,
         buttonStyle: buttonStyle,
+        function: buttonFunction,
+        goTo: goTo
     };
 
-    localStorage.setItem(selectedEement_id, JSON.stringify(data));
+    localStorage.setItem(selectedElement_id, JSON.stringify(data));
 }
 
 function getDataFromDB(id) {
