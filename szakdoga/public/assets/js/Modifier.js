@@ -191,21 +191,40 @@ function saveButtonToDB() {
 function getDataFromDB(id) {
 
     let objData = JSON.parse(localStorage.getItem(id));
+    if (!objData){
+        return false;
+    }
 
-    if (objData) {
+    if (id.includes('label')) {
         document.getElementById('text_inner').value = objData['innerText'] ? objData['innerText'] : "";
         document.getElementById('text_style_select').value = objData['style'] ? objData['style'] : "normal";
         document.getElementById('text_font_family_select').value = objData['fontFamily'] ? objData['fontFamily'] : "Arial";
         document.getElementById('text_color').value = objData['fontColor'] ? objData['fontColor'] : "#000000";
         document.getElementById('text_size').value = objData['fontSize'] ? objData['fontSize'] : "12";
         document.getElementById('text_align').value = objData['textFloat'] ? objData['textFloat'] : "center";
-        document.getElementById('text_opacity').value = objData['opacity'] ? objData['opacity'] : "1";
+        document.getElementById('text_opacity').value = objData['opacity'] ? objData['opacity'] : "100";
         if (objData['borderColor']) {
             borderRadius = document.getElementById('border_radius').value = objData['borderRadius'];
             borderColor = document.getElementById('border_color').value = objData['borderColor'];
             borderStyle = document.getElementById('border_style').value = objData['borderStyle'];
             borderSize = document.getElementById('border_size').value = objData['borderSize'];
         }
+    } else if(id.includes('image')){
+        document.getElementById('image_opacity').value = objData['opacity'] ? objData['opacity'] * 100 : "100";
+        document.getElementById('image_opacity_label').innerHTML = objData['opacity'] ? objData['opacity'] * 100 + "%" : "100%";
+    } else if(id.includes('button')){
+        document.getElementById('button_name').value = objData['buttonName'];
+        document.getElementById('button_color').value = objData['buttonColor'];
+        document.getElementById('button_text_color').value = objData['buttonTextColor'];
+        document.getElementById('button_style').value = objData['buttonStyle'];
+        document.getElementById('action_select').value = objData['function'];
+        if(objData['function'] !== 'close'){
+            document.getElementById('page_select').value = objData['goTo'];
+        }
+    }else if(id.includes('shape')){
+
+    } else if (id.includes('Background')){
+
     }
 }
 

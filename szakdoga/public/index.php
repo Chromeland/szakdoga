@@ -173,7 +173,7 @@
         <div>
             <h4 class="mody_label">Image Opacity</h4>
             <input type="range" id="image_opacity" name="vol" min="0" max="100" value="100">
-            <label for="image_opacity">100%</label>
+            <label id="image_opacity_label" for="image_opacity">100%</label>
         </div>
     </div>
     <div id="buttonContainer" class="modifierFieldContainer" style="display: none">

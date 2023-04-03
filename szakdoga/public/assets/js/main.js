@@ -126,11 +126,13 @@ function modifierConst(elem) {
         //TODO: Background needs some editing features (color)
         saveButton.setAttribute("onclick", "saveBackgroundToDB()");
         backgroundContainer.style.display = "block";
+        getDataFromDB(elem.id);
     } else if (elem.id.includes('image')) {
         saveButton.setAttribute("onclick", "savePictureToDB()");
         imageContainer.children[0].setAttribute("id", elem.id + "#mody");
         imageContainer.children[0].setAttribute("class", "SelectedElement");
         imageContainer.style.display = "block";
+        getDataFromDB(elem.id);
     } else if (elem.id.includes("button")){
         saveButton.setAttribute("onclick", "saveButtonToDB()");
         buttonContainer.children[0].setAttribute("id", elem.id + "#mody");
@@ -138,6 +140,7 @@ function modifierConst(elem) {
         let buttonName = document.getElementById('button_name');
         buttonName.value = elem.innerHTML;
         buttonContainer.style.display = "block";
+        getDataFromDB(elem.id);
     }
 }
 
