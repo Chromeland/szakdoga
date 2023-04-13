@@ -176,6 +176,51 @@
             <label id="image_opacity_label" for="image_opacity">100%</label>
         </div>
     </div>
+    <div id="shapeContainer" class="modifierFieldContainer" style="display: none">
+        <h3 id="label_settings">Shape Settings</h3>
+        <div>
+            <h4 class="mody_label">Shape color</h4>
+            <input id="shape_color" type="color">
+        </div>
+        <div>
+            <h4 class="mody_label">Image Opacity</h4>
+            <input type="range" id="shape_opacity" name="vol" min="0" max="100" value="100">
+            <label id="shape_opacity_label" for="shape_opacity">100%</label>
+        </div>
+        <div id="borderDiv">
+            <label for="shape_border" id="shape_border_label">Border</label>
+            <input id="shape_border" type="checkbox">
+        </div>
+        <div id="shapeBorderContainerDiv" style="display: none">
+            <div>
+                <h4 class="mody_label">Border Style</h4>
+                <select id="shapeBorder_style">
+                    <option id="shapeBorder_solid" style="border-style: solid">Solid</option>
+                    <option id="shapeBorder_dashed" style="border-style: dashed">Dashed</option>
+                    <option id="shapeBorder_dotted" style="border-style: dotted">Dotted</option>
+                    <option id="shapeBorder_double" style="border-style: double">Double</option>
+                    <option id="shapeBorder_inset" style="border-style: inset">Inset</option>
+                    <option id="shapeBorder_outset" style="border-style: outset">Outset</option>
+                    <option id="shapeBorder_groove" style="border-style: groove">Groove</option>
+                    <option id="shapeBorder_dot-dash" style="border-style: dot-dash">Dot-Dash</option>
+                    <option id="shapeBorder_dot-dot-dash" style="border-style: dot-dot-dash">Dot-Dot-Dash</option>
+                </select>
+            </div>
+            <div>
+                <h4 class="mody_label">Border Edges</h4>
+                <label for="shapeBorder_radius"><small>(Number - How round the border corners will be.)</small></label>
+                <input id="shapeBorder_radius" type="number">
+            </div>
+            <div>
+                <h4 class="mody_label">Border Thickness</h4>
+                <input id="shapeBorder_size" type="number">
+            </div>
+            <div>
+                <h4 class="mody_label">Border Color</h4>
+                <input id="shapeBorder_color" type="color">
+            </div>
+        </div>
+    </div>
     <div id="buttonContainer" class="modifierFieldContainer" style="display: none">
         <h3 id="label_settings">Button Settings</h3>
         <div>
@@ -267,6 +312,13 @@
 
     rangeInputText.addEventListener("input", () => {
         rangeLabelText.textContent = rangeInputText.value + "%";
+    });
+
+    const rangeInputShape = document.getElementById("shape_opacity");
+    const rangeLabelShape = document.querySelector("label[for='shape_opacity']");
+
+    rangeInputShape.addEventListener("input", () => {
+        rangeLabelShape.textContent = rangeInputShape.value + "%";
     });
 </script>
 </body>

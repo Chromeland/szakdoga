@@ -6,8 +6,10 @@ document.addEventListener('click', function (e) {
     if (elem.id === "Background" || elem.parentElement.id === "Background" || elem.parentElement.id.includes("cloned")) {
         getSelectedElement(elem);
         modifierConst(elem);
-    }else if(elem.id === "text_border"){
+    } else if(elem.id === "text_border"){
         (document.getElementById('text_border').checked) ? borderContainerDiv.style.display = 'block' : borderContainerDiv.style.display = 'none';
+    } else if(elem.id === "shape_border"){
+        (document.getElementById('shape_border').checked) ? shapeBorderContainerDiv.style.display = 'block' : shapeBorderContainerDiv.style.display = 'none';
     }
 }, false);
 
@@ -113,6 +115,8 @@ function modifierConst(elem) {
     backgroundContainer.style.display = "none";
     let imageContainer = document.getElementById('imageContainer');
     imageContainer.style.display = "none";
+    let shapeContainer = document.getElementById('shapeContainer');
+    shapeContainer.style.display = "none";
     let buttonContainer = document.getElementById('buttonContainer');
     buttonContainer.style.display = "none";
 
@@ -140,6 +144,11 @@ function modifierConst(elem) {
         let buttonName = document.getElementById('button_name');
         buttonName.value = elem.innerHTML;
         buttonContainer.style.display = "block";
+        getDataFromDB(elem.id);
+    } else if(elem.id.includes('shape')){
+        saveButton.setAttribute("onclick", "saveShapeToDB()");
+        shapeContainer.children[0].setAttribute("id", elem.id + "#mody");
+        shapeContainer.style.display = "block";
         getDataFromDB(elem.id);
     }
 }

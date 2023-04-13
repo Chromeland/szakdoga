@@ -121,6 +121,59 @@ function savePictureToDB() {
     localStorage.setItem(selectedEement_id, JSON.stringify(data));
 }
 
+function saveShapeToDB(){
+    let element = document.getElementById("shapeContainer");
+    if (!element) {
+        return false;
+    }
+
+    let elem_id = element.children[0].id;
+    let selectedEement_id = elem_id.substring(0, elem_id.indexOf("#"));
+    let selectedEement = document.getElementById(selectedEement_id);
+    let parentElement = selectedEement.parentElement.id;
+    let position = selectedEement.getBoundingClientRect();
+    let opacity = document.getElementById('shape_opacity').value / 100;
+    let shapeColor = document.getElementById('shape_color').value;
+    let borderCheck = document.getElementById('shape_border').checked;
+    let borderRadius;
+    let borderColor;
+    let borderStyle;
+    let borderSize;
+    if (borderCheck) {
+        borderRadius = document.getElementById('shapeBorder_radius').value ? document.getElementById('shapeBorder_radius').value : 0;
+        borderColor = document.getElementById('shapeBorder_color').value;
+        borderStyle = document.getElementById('shapeBorder_style').value;
+        borderSize = document.getElementById('shapeBorder_size').value ? document.getElementById('shapeBorder_size').value : 2;
+    }
+
+    selectedEement.style.backgroundColor = shapeColor;
+    selectedEement.style.opacity = opacity;
+    if (borderCheck) {
+        selectedEement.style.borderRadius = borderRadius + "px";
+        selectedEement.style.borderWidth = borderSize + "px";
+        selectedEement.style.borderStyle = borderStyle;
+        selectedEement.style.borderColor = borderColor;
+    } else {
+        selectedEement.style.border = "none";
+    }
+
+    let data = {
+        // type: 'imageToDB',
+        ID: elem_id,
+        Type: "div",
+        parentElement: parentElement,
+        position: position,
+        shapeColor: shapeColor,
+        opacity: opacity,
+        borderRadius: borderRadius,
+        borderStyle: borderStyle,
+        borderSize: borderSize,
+        borderColor: borderColor
+    };
+
+    localStorage.setItem(selectedEement_id, JSON.stringify(data));
+}
+
 function saveButtonToDB() {
     let element = document.getElementById("buttonContainer");
     if (!element) {
@@ -222,9 +275,16 @@ function getDataFromDB(id) {
             document.getElementById('page_select').value = objData['goTo'];
         }
     }else if(id.includes('shape')){
-
+        document.getElementById('shape_color').value = objData['shapeColor'];
+        document.getElementById('shape_opacity').value = objData['opacity'] ? objData['opacity'] * 100 : "100";
+        if (objData['borderColor']) {
+            borderRadius = document.getElementById('border_radius').value = objData['borderRadius'];
+            borderColor = document.getElementById('border_color').value = objData['borderColor'];
+            borderStyle = document.getElementById('border_style').value = objData['borderStyle'];
+            borderSize = document.getElementById('border_size').value = objData['borderSize'];
+        }
     } else if (id.includes('Background')){
-
+        document.getElementById('background_color').value = objData['backgroundColor'];
     }
 }
 

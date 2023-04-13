@@ -115,6 +115,9 @@ function ondragendHandler(ev) {
         cloned.src = 'https://localhost/szakdolgozat/szakdoga/public/assets/pictures/' + imgID;
         cloned.id = 'image' + oldClass.substring(oldClass.indexOf("_cloned_"));
     }
+    if(oldClass.includes('shape')){
+        cloned.style.height = '50px';
+    }
     cloned.setAttribute("class", "cloned");
     cloned.removeAttribute('draggable');
     cloned.removeAttribute('ondragstart');
@@ -290,6 +293,17 @@ window.onload = function() {
                     element.style.color = data.buttonTextColor;
                     element.style.borderRadius = '0px';
                     element.style.borderColor = 'black';
+                }
+            } else if (data.Type === 'div') {
+                element.style.backgroundColor = data.shapeColor;
+                element.style.opacity = data.opacity;
+                if (data.shapeBorderColor) {
+                    element.style.borderRadius = data.shapeBorderRadius + "px";
+                    element.style.borderWidth = data.shapeBorderSize + "px";
+                    element.style.borderStyle = data.shapeBorderStyle;
+                    element.style.borderColor = data.shapeBorderColor;
+                } else {
+                    element.style.border = "none";
                 }
             }
             const rect = data.position;
