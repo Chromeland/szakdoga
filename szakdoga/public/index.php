@@ -277,9 +277,7 @@
     <form>
         <a onclick="newProject()">New Page</a><!-- Local storage delete and page refresh.!-->
         <a onclick="saveCanvasAsHTML()">Save my page!</a> <!-- Save to file-->
-        <a>Welcome to my webpage!</a>
-        <a>Welcome to my webpage!</a>
-        <a>Welcome to my webpage!</a>
+
     </form>
 </div>
 <script>
