@@ -41,6 +41,7 @@ async function saveCanvasAsHTML() {
     html += 'background-repeat:' + styles.backgroundRepeat + ';';
     html += 'background-position:' + styles.backgroundPosition + ';';
     html += 'background-size:' + styles.backgroundSize + ';';
+    html += 'background-color:' + styles.backgroundColor + ';';
     html += '">\n';
     html += div.innerHTML;
     html += '</div>\n';
