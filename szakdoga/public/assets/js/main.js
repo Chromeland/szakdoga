@@ -51,22 +51,31 @@ async function saveCanvasAsHTML() {
         if (!fileName.endsWith('.html')) {
             fileName += '.html';
         }
-        await download(fileName, html);
-        // Now that the file has been downloaded, you can move it to a specified folder here
-        $.ajax({
-            url: '../src/PrepareClass.php',
-            type: 'POST',
-            data: data = {
-                type: 'HTMLMove',
-                fileName: fileName,
-                path: 'C:/xampp/htdocs/szakdolgozat/szakdoga/public/assets/saved_pages'
-            },
-            success: function (result) {
-                if (!result) {
-                    console.log("Sometihng went wrong!!!");
+        let downloadLink = document.createElement('a');
+        downloadLink.download = fileName;
+        downloadLink.href = 'data:text/html;charset=utf-8,' + encodeURIComponent(html);
+        downloadLink.onclick = function() {
+            $.ajax({
+                url: '../src/PrepareClass.php',
+                type: 'POST',
+                data: {
+                    type: 'HTMLMove',
+                    fileName: fileName,
+                    path: 'C:/xampp/htdocs/szakdolgozat/szakdoga/public/assets/saved_pages'
+                },
+                success: function(result) {
+                    if (!result) {
+                        console.log("Something went wrong!!!");
+                    }
+                },
+                error: function() {
+                    console.log("Something went wrong!!!");
                 }
-            }
-        });
+            });
+        };
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
     }
 }
 
