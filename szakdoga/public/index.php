@@ -34,9 +34,6 @@
             <p id="label1" class="drag_Ex" draggable="true" ondragstart="dragstartHandler(event, 'text/html')"
                ondrag="ondragHandler(event)" ondragend="ondragendHandler(event)" ondragenter="ondragenterHandler(event)"
                ondragleave="ondragleaveHandler(event)">Label</p>
-            <p id="label2" class="drag_Ex" draggable="true" ondragstart="dragstartHandler(event, 'text/html')"
-               ondrag="ondragHandler(event)" ondragend="ondragendHandler(event)" ondragenter="ondragenterHandler(event)"
-               ondragleave="ondragleaveHandler(event)">label 1</p>
         </div>
         <button id="images" onclick="showImages()" class=toolBoxButtons>Images</button>
         <div id="images_container" style="display: none" ;>
@@ -174,6 +171,13 @@
             <h4 class="mody_label">Image Opacity</h4>
             <input type="range" id="image_opacity" name="vol" min="0" max="100" value="100">
             <label id="image_opacity_label" for="image_opacity">100%</label>
+        </div>
+    </div>
+    <div id="BackgroundContainer" class="modifierFieldContainer" style="display: none">
+        <h3 id="label_settings">Background Settings</h3>
+        <div>
+            <h4 class="mody_label">Background Color</h4>
+            <input id="background_color" type="color">
         </div>
     </div>
     <div id="shapeContainer" class="modifierFieldContainer" style="display: none">

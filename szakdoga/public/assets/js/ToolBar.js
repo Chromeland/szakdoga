@@ -317,6 +317,10 @@ window.onload = function() {
             element.classList.add('cloned');
             element.setAttribute("ondblclick", "elementDelete(event)");
             backGround.appendChild(element);
+        } else if(key === 'Background'){
+            const data = JSON.parse(localStorage.getItem(key));
+            const element = document.getElementById(data.Type);
+            element.style.backgroundColor = data.backGroundColor;
         }
     }
 };

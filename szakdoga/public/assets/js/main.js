@@ -111,7 +111,7 @@ function modifierConst(elem) {
 
     let textContainer = document.getElementById('textContainer');
     textContainer.style.display = "none";
-    let backgroundContainer = document.getElementById('backgroundContainer');
+    let backgroundContainer = document.getElementById('BackgroundContainer');
     backgroundContainer.style.display = "none";
     let imageContainer = document.getElementById('imageContainer');
     imageContainer.style.display = "none";
@@ -127,8 +127,8 @@ function modifierConst(elem) {
         textContainer.style.display = "block";
         getDataFromDB(elem.id);
     } else if (elem.id.includes("Background")) {
-        //TODO: Background needs some editing features (color)
         saveButton.setAttribute("onclick", "saveBackgroundToDB()");
+        backgroundContainer.children[0].setAttribute("id", elem.id + "#mody");
         backgroundContainer.style.display = "block";
         getDataFromDB(elem.id);
     } else if (elem.id.includes('image')) {

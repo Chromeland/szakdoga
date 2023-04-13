@@ -158,7 +158,7 @@ function saveShapeToDB(){
     }
 
     let data = {
-        // type: 'imageToDB',
+        // type: 'shapeToDB',
         ID: elem_id,
         Type: "div",
         parentElement: parentElement,
@@ -172,6 +172,29 @@ function saveShapeToDB(){
     };
 
     localStorage.setItem(selectedEement_id, JSON.stringify(data));
+}
+
+function saveBackgroundToDB(){
+    let element = document.getElementById("BackgroundContainer");
+    if (!element) {
+        return false;
+    }
+
+    let elem_id = element.children[0].id;
+    let selectedElement_id = elem_id.substring(0, elem_id.indexOf("#"));
+    let selectedEement = document.getElementById(selectedElement_id);
+    let backGroundColor = document.getElementById('background_color').value;
+
+    selectedEement.style.backgroundColor = backGroundColor;
+
+    let data = {
+        // type: 'BackgroundToDB',
+        ID: elem_id,
+        Type: "Background",
+        backGroundColor: backGroundColor,
+    };
+
+    localStorage.setItem(selectedElement_id, JSON.stringify(data));
 }
 
 function saveButtonToDB() {
@@ -284,7 +307,7 @@ function getDataFromDB(id) {
             borderSize = document.getElementById('border_size').value = objData['borderSize'];
         }
     } else if (id.includes('Background')){
-        document.getElementById('background_color').value = objData['backgroundColor'];
+        document.getElementById('background_color').value = objData['backGroundColor'];
     }
 }
 
