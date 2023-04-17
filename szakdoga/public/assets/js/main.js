@@ -31,6 +31,13 @@ function mouseOverDocument(evt) {
 async function saveCanvasAsHTML() {
     let canvas = document.getElementById('Background');
     let div = canvas;
+    for (let i = 0; i < div.children.length; i++) {
+        let child = div.children[i];
+        if (child.id.includes('image')) {
+            let oldsrc = child.getAttribute('src');
+            child.setAttribute('src', replacePath(oldsrc));
+        }
+    }
     let styles = window.getComputedStyle(div);
     let html = '<!DOCTYPE html>\n';
     html += '<html>\n<head>\n<title>Webpage</title>\n</head>\n<body>\n';
@@ -54,7 +61,7 @@ async function saveCanvasAsHTML() {
         let downloadLink = document.createElement('a');
         downloadLink.download = fileName;
         downloadLink.href = 'data:text/html;charset=utf-8,' + encodeURIComponent(html);
-        downloadLink.onclick = function() {
+        downloadLink.onclick = function () {
             $.ajax({
                 url: '../src/PrepareClass.php',
                 type: 'POST',
@@ -63,12 +70,12 @@ async function saveCanvasAsHTML() {
                     fileName: fileName,
                     path: 'C:/xampp/htdocs/szakdolgozat/szakdoga/public/assets/saved_pages'
                 },
-                success: function(result) {
+                success: function (result) {
                     if (!result) {
                         console.log("Something went wrong!!!");
                     }
                 },
-                error: function() {
+                error: function () {
                     console.log("Something went wrong!!!");
                 }
             });
@@ -76,23 +83,23 @@ async function saveCanvasAsHTML() {
         document.body.appendChild(downloadLink);
         downloadLink.click();
         document.body.removeChild(downloadLink);
+        for (let i = 0; i < div.children.length; i++) {
+            let child = div.children[i];
+            if (child.id.includes('image')) {
+                let oldsrc = child.getAttribute('src');
+                child.setAttribute('src', pathBackToNormal(oldsrc));
+            }
+        }
+    } else {
+        for (let i = 0; i < div.children.length; i++) {
+            let child = div.children[i];
+            if (child.id.includes('image')) {
+                let oldsrc = child.getAttribute('src');
+                child.setAttribute('src', pathBackToNormal(oldsrc));
+            }
+        }
     }
 }
-
-
-async function download(filename, text) {
-    return new Promise((resolve, reject) => {
-        let element = document.createElement('a');
-        element.setAttribute('href', 'data:text/html;charset=utf-8,' + encodeURIComponent(text));
-        element.setAttribute('download', filename);
-        element.style.display = 'none';
-        document.body.appendChild(element);
-        element.click();
-        document.body.removeChild(element);
-        resolve();
-    });
-}
-
 
 function elementDelete(e) {
     e.target.remove();
@@ -178,10 +185,28 @@ function newProject() {
             success: function (result) {
                 if (result !== 'Error') {
                     location.reload();
-                } else{
+                } else {
                     alert('The pictures folder is missing!');
                 }
             }
         });
     }
+}
+
+function replacePath(path) {
+    // Define the old and new folder names
+    const oldFolder = 'assets/pictures';
+    const newFolder = 'assets/saved_pages/pictures';
+
+    // Replace the old folder name with the new one
+    return path.replace(oldFolder, newFolder);
+}
+
+function pathBackToNormal(path) {
+    // Define the old and new folder names
+    const newFolder = 'assets/pictures';
+    const oldFolder = 'assets/saved_pages/pictures';
+
+    // Replace the old folder name with the new one
+    return path.replace(oldFolder, newFolder);
 }
