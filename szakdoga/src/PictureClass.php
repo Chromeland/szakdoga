@@ -1,13 +1,13 @@
 <?php
-$pictreFilePath = 'C:/xampp/htdocs/szakdolgozat/szakdoga/public/assets/pictures/';
+$pictureFilePath = 'C:/xampp/htdocs/szakdolgozat/szakdoga/public/assets/pictures/';
 class PictureClass
 {
 
     public static function moveUploadedPicture($file): string
     {
-        global $pictreFilePath;
+        global $pictureFilePath;
         $tempFilePath = $file['tmp_name'];
-        $newFilePath = $pictreFilePath . $file['name'];
+        $newFilePath = $pictureFilePath . $file['name'];
         if (move_uploaded_file($tempFilePath, $newFilePath)) {
             return $newFilePath;
         } else {
@@ -32,8 +32,8 @@ class PictureClass
 
     public static function deleteImage($file): string
     {
-        global $pictreFilePath;
-        $picToDelete = $pictreFilePath . '/' . $file;
+        global $pictureFilePath;
+        $picToDelete = $pictureFilePath . '/' . $file;
         if (file_exists($picToDelete)) {
             unlink($picToDelete);
             return 'Picture deleted successfully.';
