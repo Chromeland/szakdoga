@@ -187,7 +187,7 @@
             <input id="shape_color" type="color">
         </div>
         <div>
-            <h4 class="mody_label">Image Opacity</h4>
+            <h4 class="mody_label">Shape Opacity</h4>
             <input type="range" id="shape_opacity" name="vol" min="0" max="100" value="100">
             <label id="shape_opacity_label" for="shape_opacity">100%</label>
         </div>
