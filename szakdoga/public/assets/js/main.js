@@ -196,7 +196,7 @@ function newProject() {
             type: 'POST',
             data: data = {
                 type: 'imageFolderClear',
-                folder: 'C:/xampp/htdocs/szakdolgozat/szakdoga/public/assets/pictures'
+                folder: 'C:/xampp/htdocs/szakdolgozat/szakdoga/public/assets'
             },
             success: function (result) {
                 if (result !== 'Error') {

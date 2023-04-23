@@ -86,7 +86,7 @@
 
 <!--Modifier-->
 <div id="modifier">
-    <div id="head">Selected element modifier
+    <div id="head">Modifier Window
         <button id="SaveToDB">Save</button>
     </div>
     <div id="backgroundContainer" style="display: none" class="modifierFieldContainer">
@@ -295,8 +295,8 @@
 <div id="toolBoxFromModifier"></div>
 <div class="dropdown-content" onclick="showOrHideDropdownMenu(false)">
     <form>
-        <a onclick="newProject()">New Page</a><!-- Local storage delete and page refresh.!-->
-        <a onclick="saveCanvasAsHTML()">Save my page!</a> <!-- Save to file-->
+        <a onclick="newProject()">New Page</a>
+        <a onclick="saveCanvasAsHTML()">Save my page!</a>
 
     </form>
 </div>

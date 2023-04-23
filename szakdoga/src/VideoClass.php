@@ -33,4 +33,22 @@ class VideoClass
             return false;
         }
     }
+
+    public static function newProject($folder): bool
+    {
+        if (!$folder){
+            return false;
+        }
+
+        $files = glob($folder . '/*');
+        foreach ($files as $file) {
+            if (basename($file) === '.gitignore') {
+                continue;
+            }
+            else if (is_file($file)) {
+                unlink($file);
+            }
+        }
+        return true;
+    }
 }

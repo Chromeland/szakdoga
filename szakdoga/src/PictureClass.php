@@ -44,11 +44,14 @@ class PictureClass
 
     public static function newProject($folder): string
     {
-        if (!$folder){
+        $picFolder = $folder . '/pictures';
+        $vidFolder = $folder . '/videos';
+
+        if (!$picFolder || !$vidFolder){
             return 'Error';
         }
 
-        $files = glob($folder . '/*');
+        $files = glob($picFolder . '/*');
         foreach ($files as $file) {
             if (basename($file) === '.gitignore') {
                 continue;
@@ -57,6 +60,8 @@ class PictureClass
                 unlink($file);
             }
         }
+        VideoClass::newProject($vidFolder);
         return 'Success';
+
     }
 }
