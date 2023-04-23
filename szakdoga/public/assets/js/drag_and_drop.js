@@ -78,11 +78,12 @@ interact('.cloned').dropzone({
     ondragenter: function (event) {
         var draggableElement = event.relatedTarget
         var dropzoneElement = event.target
-        let x = event.relatedTarget.getAttribute('data-x')
-        let y = event.relatedTarget.getAttribute('data-y')
-
-        event.relatedTarget.setAttribute('data-x', x)
-        event.relatedTarget.setAttribute('data-y', y)
+        draggableElement.style.zIndex = (dropzoneElement.style.zIndex) + 1;
+        // let x = event.relatedTarget.getAttribute('data-x')
+        // let y = event.relatedTarget.getAttribute('data-y')
+        //
+        // event.relatedTarget.setAttribute('data-x', x)
+        // event.relatedTarget.setAttribute('data-y', y)
 
         // feedback the possibility of a drop
         dropzoneElement.classList.add('drop-target')
@@ -91,45 +92,47 @@ interact('.cloned').dropzone({
     },
     ondragleave: function (event) {
         // remove the drop feedback style
-        if (!event.target.parentElement) {
-            event.target.classList.remove('drop-target')
-            event.relatedTarget.classList.remove('can-drop')
-            event.relatedTarget.style.borderColor = 'red'
-        }else{
-            event.target.parentElement.insertBefore(event.relatedTarget,null)
-            let posX = (event.dragEvent.client.x) - (window.innerWidth * 0.22);
-            let posY = (event.dragEvent.client.y) - (window.innerHeight * 0.1);
-            event.relatedTarget.style.transform = 'translate(' + posX + 'px, ' + posY + 'px)'
-            event.relatedTarget.setAttribute('data-x', posX)
-            event.relatedTarget.setAttribute('data-y', posY)
-        }
+        // if (!event.target.parentElement) {
+        event.target.classList.remove('drop-target')
+        event.relatedTarget.classList.remove('can-drop')
+        event.relatedTarget.style.borderColor = 'red'
+        event.relatedTarget.style.zIndex = event.target.style.zIndex - 1;
+        // }
+        // else{
+        //     event.target.parentElement.insertBefore(event.relatedTarget,null)
+        //     let posX = (event.dragEvent.client.x) - (window.innerWidth * 0.22);
+        //     let posY = (event.dragEvent.client.y) - (window.innerHeight * 0.1);
+        //     event.relatedTarget.style.transform = 'translate(' + posX + 'px, ' + posY + 'px)'
+        //     event.relatedTarget.setAttribute('data-x', posX)
+        //     event.relatedTarget.setAttribute('data-y', posY)
+        // }
     },
-    ondrop: function (event) {
-        if (event.relatedTarget.parentElement !== event.target) {
-            let x = event.relatedTarget.getAttribute('data-x')
-            let y = event.relatedTarget.getAttribute('data-y')
-            event.target.insertBefore(event.relatedTarget, null)
-            let z = event.target.getAttribute('data-x')
-            let k = event.target.getAttribute('data-y')
-
-            if (((x - z) < 0) || ((y - k) < 0)) {
-                event.relatedTarget.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
-                event.relatedTarget.setAttribute('data-x', x)
-                event.relatedTarget.setAttribute('data-y', y)
-            } else {
-                x -= z
-                x -= 1
-                y -= k
-                y -= 35
-
-                event.relatedTarget.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
-                event.relatedTarget.setAttribute('data-x', x)
-                event.relatedTarget.setAttribute('data-y', y)
-            }
-
-
-        }
-    },
+    // ondrop: function (event) {
+    //     if (event.relatedTarget.parentElement !== event.target) {
+    //         let x = event.relatedTarget.getAttribute('data-x')
+    //         let y = event.relatedTarget.getAttribute('data-y')
+    //         event.target.insertBefore(event.relatedTarget, null)
+    //         let z = event.target.getAttribute('data-x')
+    //         let k = event.target.getAttribute('data-y')
+    //
+    //         if (((x - z) < 0) || ((y - k) < 0)) {
+    //             event.relatedTarget.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
+    //             event.relatedTarget.setAttribute('data-x', x)
+    //             event.relatedTarget.setAttribute('data-y', y)
+    //         } else {
+    //             x -= z
+    //             x -= 1
+    //             y -= k
+    //             y -= 35
+    //
+    //             event.relatedTarget.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
+    //             event.relatedTarget.setAttribute('data-x', x)
+    //             event.relatedTarget.setAttribute('data-y', y)
+    //         }
+    //
+    //
+    //     }
+    // },
     ondropdeactivate: function (event) {
         // remove active dropzone feedback
         event.target.classList.remove('drop-active')
