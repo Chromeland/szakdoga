@@ -36,7 +36,7 @@ class VideoClass
 
     public static function newProject($folder): bool
     {
-        if (!$folder){
+        if (!$folder) {
             return false;
         }
 
@@ -44,8 +44,7 @@ class VideoClass
         foreach ($files as $file) {
             if (basename($file) === '.gitignore') {
                 continue;
-            }
-            else if (is_file($file)) {
+            } else if (is_file($file)) {
                 unlink($file);
             }
         }

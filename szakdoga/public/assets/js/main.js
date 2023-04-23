@@ -6,9 +6,9 @@ document.addEventListener('click', function (e) {
     if (elem.id === "Background" || elem.parentElement.id === "Background" || elem.parentElement.id.includes("cloned")) {
         getSelectedElement(elem);
         modifierConst(elem);
-    } else if(elem.id === "text_border"){
+    } else if (elem.id === "text_border") {
         (document.getElementById('text_border').checked) ? borderContainerDiv.style.display = 'block' : borderContainerDiv.style.display = 'none';
-    } else if(elem.id === "shape_border"){
+    } else if (elem.id === "shape_border") {
         (document.getElementById('shape_border').checked) ? shapeBorderContainerDiv.style.display = 'block' : shapeBorderContainerDiv.style.display = 'none';
     }
 }, false);
@@ -36,7 +36,7 @@ async function saveCanvasAsHTML() {
         if (child.id.includes('image')) {
             let oldsrc = child.getAttribute('src');
             child.setAttribute('src', replacePicturePath(oldsrc));
-        }else if(child.id.includes('video')){
+        } else if (child.id.includes('video')) {
             let oldsrc = child.children[0].getAttribute('src');
             child.children[0].setAttribute('src', replaceVideoPath(oldsrc));
         }
@@ -91,7 +91,7 @@ async function saveCanvasAsHTML() {
             if (child.id.includes('image')) {
                 let oldsrc = child.getAttribute('src');
                 child.setAttribute('src', picPathBackToNormal(oldsrc));
-            } else if(child.id.includes('image')){
+            } else if (child.id.includes('image')) {
                 let oldsrc = child.children [0].getAttribute('src');
                 child.children[0].setAttribute('src', picPathBackToNormal(oldsrc));
             }
@@ -102,7 +102,7 @@ async function saveCanvasAsHTML() {
             if (child.id.includes('image')) {
                 let oldsrc = child.getAttribute('src');
                 child.setAttribute('src', picPathBackToNormal(oldsrc));
-            } else if(child.id.includes('image')){
+            } else if (child.id.includes('image')) {
                 let oldsrc = child.children [0].getAttribute('src');
                 child.children[0].setAttribute('src', picPathBackToNormal(oldsrc));
             }
@@ -165,7 +165,7 @@ function modifierConst(elem) {
         imageContainer.children[0].setAttribute("class", "SelectedElement");
         imageContainer.style.display = "block";
         getDataFromDB(elem.id);
-    } else if (elem.id.includes("button")){
+    } else if (elem.id.includes("button")) {
         saveButton.setAttribute("onclick", "saveButtonToDB()");
         buttonContainer.children[0].setAttribute("id", elem.id + "#mody");
         buttonContainer.children[0].setAttribute("class", "SelectedElement");
@@ -173,12 +173,12 @@ function modifierConst(elem) {
         buttonName.value = elem.innerHTML;
         buttonContainer.style.display = "block";
         getDataFromDB(elem.id);
-    } else if(elem.id.includes('shape')){
+    } else if (elem.id.includes('shape')) {
         saveButton.setAttribute("onclick", "saveShapeToDB()");
         shapeContainer.children[0].setAttribute("id", elem.id + "#mody");
         shapeContainer.style.display = "block";
         getDataFromDB(elem.id);
-    } else if(elem.id.includes('video')) {
+    } else if (elem.id.includes('video')) {
         saveButton.setAttribute("onclick", "saveVideoToDB()");
         videoContainer.children[0].setAttribute("id", elem.id + "#mody");
         videoContainer.style.display = "block";

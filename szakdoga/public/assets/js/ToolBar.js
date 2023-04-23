@@ -16,7 +16,7 @@ function showImages() {
     }
 }
 
-function showVideos(){
+function showVideos() {
     let show = document.getElementById("videos_container");
     if (show.style.display === "none") {
         show.removeAttribute("style");
@@ -124,7 +124,7 @@ function ondragendHandler(ev) {
         cloned.src = 'https://localhost/szakdolgozat/szakdoga/public/assets/pictures/' + imgID;
         cloned.id = 'image' + oldClass.substring(oldClass.indexOf("_cloned_"));
     }
-    if(oldClass.includes('shape')){
+    if (oldClass.includes('shape')) {
         cloned.style.height = '50px';
     }
     cloned.setAttribute("class", "cloned");
@@ -282,17 +282,17 @@ window.onload = function() {
             } else if (data.Type === "img") {
                 element.src = data.src;
                 element.style.opacity = data.opacity;
-            } else if (data.Type === "video"){
-                element.setAttribute('controls','');
+            } else if (data.Type === "video") {
+                element.setAttribute('controls', '');
                 let source = document.createElement('source');
-                source.setAttribute('src',data.src);
-                source.setAttribute('type','video/mp4');
+                source.setAttribute('src', data.src);
+                source.setAttribute('type', 'video/mp4');
                 element.appendChild(source);
             } else if (data.Type === "button") {
                 element.innerHTML = data.buttonName;
                 if (data.buttonStyle !== 'Basic') {
                     element.classList.add(data.buttonStyle);
-                }else {
+                } else {
                     element.style.background = data.buttonColor;
                     element.style.color = data.buttonTextColor;
                     element.style.borderRadius = '0px';
@@ -321,7 +321,7 @@ window.onload = function() {
             element.classList.add('cloned');
             element.setAttribute("ondblclick", "elementDelete(event)");
             backGround.appendChild(element);
-        } else if(key === 'Background'){
+        } else if (key === 'Background') {
             const data = JSON.parse(localStorage.getItem(key));
             const element = document.getElementById(data.Type);
             element.style.backgroundColor = data.backGroundColor;
@@ -379,7 +379,7 @@ function checkExistingImages() {
     });
 }
 
-function moveVideo(file){
+function moveVideo(file) {
     const data = new FormData();
     data.append('type', 'checkVideos');
     data.append('file', file);
@@ -390,7 +390,7 @@ function moveVideo(file){
         contentType: false,
         processData: false,
         success: function (result) {
-            if (!result){
+            if (!result) {
                 alert('File upload failed!');
                 return false;
             }

@@ -20,8 +20,8 @@ class HTMLClass
         $destination = $path . '/' . $filename;
         if (file_exists($filePath)) {
             if (rename($filePath, $destination)) {
-                self::copyFolder($picSrc,$picPath);
-                self::copyFolder($vidSrc,$vidPath);
+                self::copyFolder($picSrc, $picPath);
+                self::copyFolder($vidSrc, $vidPath);
                 return true;
             }
         }
@@ -55,5 +55,4 @@ class HTMLClass
         // Clean up
         closedir($dir);
     }
-
 }

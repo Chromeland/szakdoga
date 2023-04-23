@@ -47,7 +47,7 @@ class PictureClass
         $picFolder = $folder . '/pictures';
         $vidFolder = $folder . '/videos';
 
-        if (!$picFolder || !$vidFolder){
+        if (!$picFolder || !$vidFolder) {
             return 'Error';
         }
 
@@ -55,13 +55,11 @@ class PictureClass
         foreach ($files as $file) {
             if (basename($file) === '.gitignore') {
                 continue;
-            }
-            else if (is_file($file)) {
+            } else if (is_file($file)) {
                 unlink($file);
             }
         }
         VideoClass::newProject($vidFolder);
         return 'Success';
-
     }
 }

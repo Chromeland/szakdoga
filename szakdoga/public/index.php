@@ -13,7 +13,7 @@
     <script type="module" src="./assets/js/drag_and_drop.js"></script>
 
 
-    <title>Szakdoga</title>
+    <title>Szakdolgozat</title>
 </head>
 <body>
 <div id="loader_canvas" style="display: none">
@@ -63,17 +63,6 @@
                  ondrag="ondragHandler(event)" ondragend="ondragendHandler(event)"
                  ondragenter="ondragenterHandler(event)" ondragleave="ondragleaveHandler(event)"></div>
         </div>
-<!--        <button id="lists" onclick="showLists()" class=toolBoxButtons>Lists</button>-->
-<!--        <div id="lists_container" style="display: none" ;>-->
-<!--            <div id="list1" class="drag_Ex" draggable="true" ondragstart="dragstartHandler(event, 'text/html')"-->
-<!--                 ondrag="ondragHandler(event)" ondragend="ondragendHandler(event)"-->
-<!--                 ondragenter="ondragenterHandler(event)" ondragleave="ondragleaveHandler(event)">List-->
-<!--            </div>-->
-<!--            <div id="list2" class="drag_Ex" draggable="true" ondragstart="dragstartHandler(event, 'text/html')"-->
-<!--                 ondrag="ondragHandler(event)" ondragend="ondragendHandler(event)"-->
-<!--                 ondragenter="ondragenterHandler(event)" ondragleave="ondragleaveHandler(event)">List 1-->
-<!--            </div>-->
-<!--        </div>-->
         <button id="buttons" onclick="showButtons()" class=toolBoxButtons>Buttons</button>
         <div id="buttons_container" style="display: none" ;>
             <button id="button1" class=drag_Ex draggable="true" ondragstart="dragstartHandler(event, 'text/html')"
@@ -297,7 +286,6 @@
     <form>
         <a onclick="newProject()">New Page</a>
         <a onclick="saveCanvasAsHTML()">Save my page!</a>
-
     </form>
 </div>
 <script>
@@ -320,7 +308,6 @@
             $(this).css("border", "none");
         }
     });
-
 
     const rangeInputImage = document.getElementById("image_opacity");
     const rangeLabelImage = document.querySelector("label[for='image_opacity']");

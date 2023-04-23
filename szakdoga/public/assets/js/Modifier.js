@@ -121,7 +121,7 @@ function savePictureToDB() {
     localStorage.setItem(selectedEement_id, JSON.stringify(data));
 }
 
-function saveShapeToDB(){
+function saveShapeToDB() {
     let element = document.getElementById("shapeContainer");
     if (!element) {
         return false;
@@ -174,7 +174,7 @@ function saveShapeToDB(){
     localStorage.setItem(selectedEement_id, JSON.stringify(data));
 }
 
-function saveBackgroundToDB(){
+function saveBackgroundToDB() {
     let element = document.getElementById("BackgroundContainer");
     if (!element) {
         return false;
@@ -216,30 +216,30 @@ function saveButtonToDB() {
     let goTo = "";
 
     selectedElement.innerHTML = buttonName;
-    if(buttonStyle !== 'Basic'){
+    if (buttonStyle !== 'Basic') {
         selectedElement.classList.add(buttonStyle);
         selectedElement.style.background = '#3e64ff';
         selectedElement.style.borderColor = '#3e64ff';
         selectedElement.style.color = '#fff';
         selectedElement.style.borderRadius = '40px';
-    }else {
+    } else {
         selectedElement.style.background = buttonColor;
         selectedElement.style.color = buttonTextColor;
         selectedElement.style.borderRadius = '0px';
         selectedElement.style.borderColor = 'black';
     }
-    if(buttonFunction === 'close'){
-        selectedElement.setAttribute('onclick','window.close();');
-    }else if(buttonFunction === 'page'){
+    if (buttonFunction === 'close') {
+        selectedElement.setAttribute('onclick', 'window.close();');
+    } else if (buttonFunction === 'page') {
         let destinationType = document.getElementById('page_select').value
-        if(destinationType === 'url'){
+        if (destinationType === 'url') {
             goTo = document.getElementById('goto_url').value;
             if (!/^https?:\/\//i.test(goTo)) {
                 goTo = 'http://' + goTo;
             }
             let URL = "window.location.href = '" + goTo + "';";
             selectedElement.setAttribute('onclick', URL);
-        }else if (destinationType === 'file'){
+        } else if (destinationType === 'file') {
             let fileInput = document.getElementById('goto_file');
             let selectedFile = fileInput.files[0]['name'];
             goTo = 'file:///C:/xampp/htdocs/szakdolgozat/szakdoga/public/assets/saved_pages/' + selectedFile;
@@ -277,7 +277,7 @@ function saveVideoToDB() {
     let position = selectedElement.getBoundingClientRect();
     let src = selectedElement.children[0].getAttribute('src');
 
-    if (!src){
+    if (!src) {
         let fileInput = document.getElementById('file_source');
         let selectedFile = fileInput.files[0]['name'];
         src = 'https://localhost/szakdolgozat/szakdoga/public/assets/videos/' + selectedFile;
@@ -300,7 +300,7 @@ function saveVideoToDB() {
 function getDataFromDB(id) {
 
     let objData = JSON.parse(localStorage.getItem(id));
-    if (!objData){
+    if (!objData) {
         return false;
     }
 
@@ -318,19 +318,19 @@ function getDataFromDB(id) {
             borderStyle = document.getElementById('border_style').value = objData['borderStyle'];
             borderSize = document.getElementById('border_size').value = objData['borderSize'];
         }
-    } else if(id.includes('image')){
+    } else if (id.includes('image')) {
         document.getElementById('image_opacity').value = objData['opacity'] ? objData['opacity'] * 100 : "100";
         document.getElementById('image_opacity_label').innerHTML = objData['opacity'] ? objData['opacity'] * 100 + "%" : "100%";
-    } else if(id.includes('button')){
+    } else if (id.includes('button')) {
         document.getElementById('button_name').value = objData['buttonName'];
         document.getElementById('button_color').value = objData['buttonColor'];
         document.getElementById('button_text_color').value = objData['buttonTextColor'];
         document.getElementById('button_style').value = objData['buttonStyle'];
         document.getElementById('action_select').value = objData['function'];
-        if(objData['function'] !== 'close'){
+        if (objData['function'] !== 'close') {
             document.getElementById('page_select').value = objData['goTo'];
         }
-    } else if(id.includes('shape')){
+    } else if (id.includes('shape')) {
         document.getElementById('shape_color').value = objData['shapeColor'];
         document.getElementById('shape_opacity').value = objData['opacity'] ? objData['opacity'] * 100 : "100";
         if (objData['borderColor']) {
@@ -339,7 +339,7 @@ function getDataFromDB(id) {
             borderStyle = document.getElementById('border_style').value = objData['borderStyle'];
             borderSize = document.getElementById('border_size').value = objData['borderSize'];
         }
-    } else if (id.includes('Background')){
+    } else if (id.includes('Background')) {
         document.getElementById('background_color').value = objData['backGroundColor'];
     }
 }
