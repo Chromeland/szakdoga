@@ -264,6 +264,39 @@ function saveButtonToDB() {
     localStorage.setItem(selectedElement_id, JSON.stringify(data));
 }
 
+function saveVideoToDB() {
+    let element = document.getElementById("videoContainer");
+    if (!element) {
+        return false;
+    }
+
+    let elem_id = element.children[0].id;
+    let selectedElement_id = elem_id.substring(0, elem_id.indexOf("#"));
+    let selectedElement = document.getElementById(selectedElement_id);
+    let parentElement = selectedElement.parentElement.id;
+    let position = selectedElement.getBoundingClientRect();
+    let src = selectedElement.children[0].getAttribute('src');
+
+    if (!src){
+        let fileInput = document.getElementById('file_source');
+        let selectedFile = fileInput.files[0]['name'];
+        src = 'https://localhost/szakdolgozat/szakdoga/public/assets/videos/' + selectedFile;
+    }
+
+    selectedElement.children[0].setAttribute('src', src);
+    let data = {
+        // type: 'imageToDB',
+        ID: elem_id,
+        Type: "video",
+        parentElement: parentElement,
+        position: position,
+        src: src
+
+    };
+
+    localStorage.setItem(selectedElement_id, JSON.stringify(data));
+}
+
 function getDataFromDB(id) {
 
     let objData = JSON.parse(localStorage.getItem(id));
@@ -297,7 +330,7 @@ function getDataFromDB(id) {
         if(objData['function'] !== 'close'){
             document.getElementById('page_select').value = objData['goTo'];
         }
-    }else if(id.includes('shape')){
+    } else if(id.includes('shape')){
         document.getElementById('shape_color').value = objData['shapeColor'];
         document.getElementById('shape_opacity').value = objData['opacity'] ? objData['opacity'] * 100 : "100";
         if (objData['borderColor']) {

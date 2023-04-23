@@ -10,15 +10,18 @@ class HTMLClass
         }
 
         //move picture to the the right folder too.
-        $src = 'C:\xampp\htdocs\szakdolgozat\szakdoga\public\assets\pictures';
+        $picSrc = 'C:\xampp\htdocs\szakdolgozat\szakdoga\public\assets\pictures';
+        $vidSrc = 'C:\xampp\htdocs\szakdolgozat\szakdoga\public\assets\videos';
         $picPath = $path . "/pictures";
+        $vidPath = $path . "/videos";
 
         // Move file to destination
         $filePath = getenv('USERPROFILE') . DIRECTORY_SEPARATOR . 'Downloads' . DIRECTORY_SEPARATOR . $filename;
         $destination = $path . '/' . $filename;
         if (file_exists($filePath)) {
             if (rename($filePath, $destination)) {
-                self::copyFolder($src,$picPath);
+                self::copyFolder($picSrc,$picPath);
+                self::copyFolder($vidSrc,$vidPath);
                 return true;
             }
         }

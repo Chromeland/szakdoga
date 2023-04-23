@@ -35,7 +35,10 @@ async function saveCanvasAsHTML() {
         let child = div.children[i];
         if (child.id.includes('image')) {
             let oldsrc = child.getAttribute('src');
-            child.setAttribute('src', replacePath(oldsrc));
+            child.setAttribute('src', replacePicturePath(oldsrc));
+        }else if(child.id.includes('video')){
+            let oldsrc = child.children[0].getAttribute('src');
+            child.children[0].setAttribute('src', replaceVideoPath(oldsrc));
         }
     }
     let styles = window.getComputedStyle(div);
@@ -87,7 +90,10 @@ async function saveCanvasAsHTML() {
             let child = div.children[i];
             if (child.id.includes('image')) {
                 let oldsrc = child.getAttribute('src');
-                child.setAttribute('src', pathBackToNormal(oldsrc));
+                child.setAttribute('src', picPathBackToNormal(oldsrc));
+            } else if(child.id.includes('image')){
+                let oldsrc = child.children [0].getAttribute('src');
+                child.children[0].setAttribute('src', picPathBackToNormal(oldsrc));
             }
         }
     } else {
@@ -95,7 +101,10 @@ async function saveCanvasAsHTML() {
             let child = div.children[i];
             if (child.id.includes('image')) {
                 let oldsrc = child.getAttribute('src');
-                child.setAttribute('src', pathBackToNormal(oldsrc));
+                child.setAttribute('src', picPathBackToNormal(oldsrc));
+            } else if(child.id.includes('image')){
+                let oldsrc = child.children [0].getAttribute('src');
+                child.children[0].setAttribute('src', picPathBackToNormal(oldsrc));
             }
         }
     }
@@ -132,6 +141,8 @@ function modifierConst(elem) {
     backgroundContainer.style.display = "none";
     let imageContainer = document.getElementById('imageContainer');
     imageContainer.style.display = "none";
+    let videoContainer = document.getElementById('videoContainer');
+    videoContainer.style.display = "none";
     let shapeContainer = document.getElementById('shapeContainer');
     shapeContainer.style.display = "none";
     let buttonContainer = document.getElementById('buttonContainer');
@@ -167,6 +178,11 @@ function modifierConst(elem) {
         shapeContainer.children[0].setAttribute("id", elem.id + "#mody");
         shapeContainer.style.display = "block";
         getDataFromDB(elem.id);
+    } else if(elem.id.includes('video')) {
+        saveButton.setAttribute("onclick", "saveVideoToDB()");
+        videoContainer.children[0].setAttribute("id", elem.id + "#mody");
+        videoContainer.style.display = "block";
+        getDataFromDB(elem.id);
     }
 }
 
@@ -193,7 +209,7 @@ function newProject() {
     }
 }
 
-function replacePath(path) {
+function replacePicturePath(path) {
     // Define the old and new folder names
     const oldFolder = 'assets/pictures';
     const newFolder = 'assets/saved_pages/pictures';
@@ -202,10 +218,28 @@ function replacePath(path) {
     return path.replace(oldFolder, newFolder);
 }
 
-function pathBackToNormal(path) {
+function replaceVideoPath(path) {
+    // Define the old and new folder names
+    const oldFolder = 'assets/videos';
+    const newFolder = 'assets/saved_pages/videos';
+
+    // Replace the old folder name with the new one
+    return path.replace(oldFolder, newFolder);
+}
+
+function picPathBackToNormal(path) {
     // Define the old and new folder names
     const newFolder = 'assets/pictures';
     const oldFolder = 'assets/saved_pages/pictures';
+
+    // Replace the old folder name with the new one
+    return path.replace(oldFolder, newFolder);
+}
+
+function vidPathBackToNormal(path) {
+    // Define the old and new folder names
+    const newFolder = 'assets/videos';
+    const oldFolder = 'assets/saved_pages/videos';
 
     // Replace the old folder name with the new one
     return path.replace(oldFolder, newFolder);

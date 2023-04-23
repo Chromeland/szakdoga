@@ -47,7 +47,15 @@
             <label for="pictureUpload" class="custom-file-upload">
                 Picture Upload
             </label>
-            <input id="pictureUpload" type="file"/>
+            <input id="pictureUpload" type="file" style="display: none"/>
+        </div>
+        <button id="videos" onclick="showVideos()" class=toolBoxButtons>Videos</button>
+        <div id="videos_container" style="display: none" ;>
+            <video id="video" class="drag_Ex" draggable="true" ondragstart="dragstartHandler(event, 'text/html')"
+                 ondrag="ondragHandler(event)" ondragend="ondragendHandler(event)"
+                 ondragenter="ondragenterHandler(event)" ondragleave="ondragleaveHandler(event)" controls>
+            <source type="video/mp4">
+            </video>
         </div>
         <button id="shapes" onclick="showShapes()" class=toolBoxButtons>Shapes</button>
         <div id="shapes_container" style="display: none" ;>
@@ -266,10 +274,22 @@
             </div>
         </div>
     </div>
+    <div id="videoContainer" class="modifierFieldContainer" style="display: none">
+        <h3 id="label_settings">Video Settings</h3>
+        <div>
+            <div id="source_options">
+                <div id="file_option">
+                    <label for="file-input">MP4 file:</label>
+                    <input type="file" id="file_source">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!--Other Elements-->
-<div id="Background" class="Background" ondrop="ondropHandler(event)" ondragover="ondragOverHandler(event)"></div>
+<div id="Background" class="Background" ondrop="ondropHandler(event)" ondragover="ondragOverHandler(event)">
+</div>
 <div id="headerFromOther"></div>
 <div id="modifiersFromMain"></div>
 <div id="toolBoxFromModifier"></div>

@@ -2,6 +2,7 @@
 
 include 'DbClass.php';
 include 'PictureClass.php';
+include 'VideoClass.php';
 include 'HTMLClass.php';
 
 if ($_POST["type"] === 'TextToDb') {
@@ -18,6 +19,8 @@ if ($_POST["type"] === 'TextToDb') {
     echo(json_encode(PictureClass::newProject($_POST['folder'])));
 }else if($_POST['type'] === 'HTMLMove'){
     echo (json_encode(HTMLClass::moveDownloadedFile($_POST['fileName'],$_POST['path'])));
+} else if($_POST['type'] === 'checkVideos'){
+    echo (json_encode(VideoClass::moveVideo($_FILES['file'])));
 }
 else {
     echo("Something went wrong!");

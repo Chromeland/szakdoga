@@ -16,6 +16,15 @@ function showImages() {
     }
 }
 
+function showVideos(){
+    let show = document.getElementById("videos_container");
+    if (show.style.display === "none") {
+        show.removeAttribute("style");
+    } else {
+        show.style.display = "none";
+    }
+}
+
 function showShapes() {
     let show = document.getElementById("shapes_container");
     if (show.style.display === "none") {
@@ -226,26 +235,15 @@ window.onload = function() {
         };
         reader.readAsDataURL(file);
     });
-
-    // const video = document.querySelector("#video");
-    // const inputVideo = document.getElementById("videoUpload");
-    // inputVideo.setAttribute("id", "videoInput");
-    // inputVideo.setAttribute("class", "srcInput");
-    // inputVideo.setAttribute("type", "file");
-    // inputVideo.setAttribute("accept", "video/*");
-    // inputVideo.addEventListener("change", (event) => {
-    //     const file = event.target.files[0];
-    //     const reader = new FileReader();
-    //     reader.onload = (event) => {
-    //         const videoURL = URL.createObjectURL(file);
-    //         video.firstElementChild.src = videoURL;
-    //         video.style.display = "block";
-    //     };
-    //     reader.readAsDataURL(file);
-    // });
-
     imagesContainer.appendChild(inputImage);
-    // imagesContainer.appendChild(inputVideo);
+
+    const videoInput = document.getElementById("file_source");
+    videoInput.setAttribute("type", "file");
+    videoInput.setAttribute("accept", "video/*");
+    videoInput.addEventListener("change", (event) => {
+        const file = event.target.files[0]; // Get the selected file
+        moveVideo(file);
+    });
 
     let backGround = document.getElementById('Background');
     const windowWidth = window.innerWidth;
@@ -284,6 +282,12 @@ window.onload = function() {
             } else if (data.Type === "img") {
                 element.src = data.src;
                 element.style.opacity = data.opacity;
+            } else if (data.Type === "video"){
+                element.setAttribute('controls','');
+                let source = document.createElement('source');
+                source.setAttribute('src',data.src);
+                source.setAttribute('type','video/mp4');
+                element.appendChild(source);
             } else if (data.Type === "button") {
                 element.innerHTML = data.buttonName;
                 if (data.buttonStyle !== 'Basic') {
@@ -372,5 +376,25 @@ function checkExistingImages() {
                 });
             }
         }
+    });
+}
+
+function moveVideo(file){
+    const data = new FormData();
+    data.append('type', 'checkVideos');
+    data.append('file', file);
+    $.ajax({
+        url: '../src/PrepareClass.php',
+        type: 'POST',
+        data: data,
+        contentType: false,
+        processData: false,
+        success: function (result) {
+            if (!result){
+                alert('File upload failed!');
+                return false;
+            }
+        },
+        dataType: 'json' // set the expected data type of the response
     });
 }
