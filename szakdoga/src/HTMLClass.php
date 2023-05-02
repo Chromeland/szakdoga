@@ -18,14 +18,10 @@ class HTMLClass
         // Move file to destination
         $filePath = getenv('USERPROFILE') . DIRECTORY_SEPARATOR . 'Downloads' . DIRECTORY_SEPARATOR . $filename;
         $destination = $path . '/' . $filename;
-        if (file_exists($filePath)) {
-            if (rename($filePath, $destination)) {
-                self::copyFolder($picSrc, $picPath);
-                self::copyFolder($vidSrc, $vidPath);
-                return true;
-            }
-        }
-        return false;
+        rename($filePath, $destination);
+        self::copyFolder($picSrc, $picPath);
+        self::copyFolder($vidSrc, $vidPath);
+        return true;
     }
 
     public static function copyFolder($src, $dst): void
