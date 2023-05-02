@@ -71,7 +71,7 @@ async function saveCanvasAsHTML() {
                 data: {
                     type: 'HTMLMove',
                     fileName: fileName,
-                    path: 'C:/xampp/htdocs/szakdolgozat/szakdoga/public/assets/saved_pages'
+                    path: '../public/assets/saved_pages'
                 },
                 success: function (result) {
                     if (!result) {
@@ -196,7 +196,7 @@ function newProject() {
             type: 'POST',
             data: data = {
                 type: 'imageFolderClear',
-                folder: 'C:/xampp/htdocs/szakdolgozat/szakdoga/public/assets'
+                folder: '../public/assets'
             },
             success: function (result) {
                 if (result !== 'Error') {

@@ -10,8 +10,8 @@ class HTMLClass
         }
 
         //move picture to the the right folder too.
-        $picSrc = 'C:\xampp\htdocs\szakdolgozat\szakdoga\public\assets\pictures';
-        $vidSrc = 'C:\xampp\htdocs\szakdolgozat\szakdoga\public\assets\videos';
+        $picSrc = '../public/assets/pictures';
+        $vidSrc = '../public/assets/videos';
         $picPath = $path . "/pictures";
         $vidPath = $path . "/videos";
 

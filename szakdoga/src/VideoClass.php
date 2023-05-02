@@ -4,7 +4,7 @@ class VideoClass
 {
     public static function moveVideo($video): bool
     {
-        $destination = 'C:/xampp/htdocs/szakdolgozat/szakdoga/public/assets/videos/';
+        $destination = '../public/assets/videos/';
         $target_file = $destination . basename($video["name"]);
         $videoFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 

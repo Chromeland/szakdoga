@@ -1,5 +1,5 @@
 <?php
-$pictureFilePath = 'C:/xampp/htdocs/szakdolgozat/szakdoga/public/assets/pictures/';
+$pictureFilePath = '../public/assets/pictures/';
 class PictureClass
 {
 
@@ -8,6 +8,11 @@ class PictureClass
         global $pictureFilePath;
         $tempFilePath = $file['tmp_name'];
         $newFilePath = $pictureFilePath . $file['name'];
+
+        if(!file_exists($pictureFilePath)){
+            mkdir($pictureFilePath);
+        }
+
         if (move_uploaded_file($tempFilePath, $newFilePath)) {
             return $newFilePath;
         } else {

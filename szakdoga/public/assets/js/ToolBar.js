@@ -121,7 +121,7 @@ function ondragendHandler(ev) {
     cloned.removeAttribute("style");
     if (oldClass.includes("png") || oldClass.includes("jpg")) {
         let imgID = oldClass.substr(0, oldClass.indexOf('_cloned_'));
-        cloned.src = 'https://localhost/szakdolgozat/szakdoga/public/assets/pictures/' + imgID;
+        cloned.src = '../public/assets/pictures/' + imgID;
         cloned.id = 'image' + oldClass.substring(oldClass.indexOf("_cloned_"));
     }
     if (oldClass.includes('shape')) {
@@ -335,7 +335,7 @@ function checkExistingImages() {
         type: 'POST',
         data: data = {
             type: 'checkImages',
-            directory: 'C:/xampp/htdocs/szakdolgozat/szakdoga/public/assets/pictures'
+            directory: '../public/assets/pictures'
         },
         success: function (result) {
             let objData = JSON.parse(result);
@@ -343,7 +343,7 @@ function checkExistingImages() {
                 // If there are existing images, create small versions of them
                 objData.forEach(imageName => {
                     const img = new Image();
-                    img.src = `/szakdolgozat/szakdoga/public/assets/pictures/${imageName}`;
+                    img.src = `../public/assets/pictures/${imageName}`;
                     img.onload = () => {
                         let width = img.width;
                         let height = img.height;

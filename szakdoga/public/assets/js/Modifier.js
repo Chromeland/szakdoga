@@ -242,7 +242,7 @@ function saveButtonToDB() {
         } else if (destinationType === 'file') {
             let fileInput = document.getElementById('goto_file');
             let selectedFile = fileInput.files[0]['name'];
-            goTo = 'file:///C:/xampp/htdocs/szakdolgozat/szakdoga/public/assets/saved_pages/' + selectedFile;
+            goTo = '../public/assets/saved_pages/' + selectedFile;
             selectedElement.setAttribute('onclick', "window.location.href = '" + goTo + "'");
         }
     }
@@ -280,7 +280,7 @@ function saveVideoToDB() {
     if (!src) {
         let fileInput = document.getElementById('file_source');
         let selectedFile = fileInput.files[0]['name'];
-        src = 'https://localhost/szakdolgozat/szakdoga/public/assets/videos/' + selectedFile;
+        src = '../public/assets/videos/' + selectedFile;
     }
 
     selectedElement.children[0].setAttribute('src', src);
