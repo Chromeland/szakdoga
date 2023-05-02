@@ -53,11 +53,8 @@ class VideoClass
 
     public static function getVideoSrc($fileName): string
     {
-        $absolute_path = realpath(dirname(__FILE__));
-        $filePath = 'public\assets\videos' . DIRECTORY_SEPARATOR . $fileName;
-        $absolute_path = explode(DIRECTORY_SEPARATOR,$absolute_path);
-        array_pop($absolute_path);
-        $absolute_path[] = $filePath;
-        return implode(DIRECTORY_SEPARATOR,$absolute_path);
+        $absolute_path = 'http://kdbiy8.szakdolgozat.net/Szakdolgozat/szakdoga/public/';
+        $filePath = 'assets/videos/' . $fileName;
+        return $absolute_path . $filePath;
     }
 }
