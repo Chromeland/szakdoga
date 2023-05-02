@@ -121,7 +121,7 @@ function ondragendHandler(ev) {
     cloned.removeAttribute("style");
     if (oldClass.includes("png") || oldClass.includes("jpg")) {
         let imgID = oldClass.substr(0, oldClass.indexOf('_cloned_'));
-        cloned.src = '../public/assets/pictures/' + imgID;
+        cloned.src = 'http://kdbiy8.szakdolgozat.net/Szakdolgozat/szakdoga/public/assets/pictures/' + imgID;
         cloned.id = 'image' + oldClass.substring(oldClass.indexOf("_cloned_"));
     }
     if (oldClass.includes('shape')) {
