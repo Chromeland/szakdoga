@@ -280,21 +280,36 @@ function saveVideoToDB() {
     if (!src) {
         let fileInput = document.getElementById('file_source');
         let selectedFile = fileInput.files[0]['name'];
-        src = '../public/assets/videos/' + selectedFile;
+        const data = {
+                type: 'getVideoSrc',
+                videoName: selectedFile
+            };
+        $.ajax({
+            url: '../src/PrepareClass.php',
+            type: 'POST',
+            data: data,
+            success: function (result) {
+                if (result) {
+                    src = result;
+
+                    selectedElement.children[0].setAttribute('src', src);
+
+                    let data = {
+                        // type: 'imageToDB',
+                        ID: elem_id,
+                        Type: "video",
+                        parentElement: parentElement,
+                        position: position,
+                        src: src
+
+                    };
+
+                    localStorage.setItem(selectedElement_id, JSON.stringify(data));
+                }
+            }
+        });
     }
 
-    selectedElement.children[0].setAttribute('src', src);
-    let data = {
-        // type: 'imageToDB',
-        ID: elem_id,
-        Type: "video",
-        parentElement: parentElement,
-        position: position,
-        src: src
-
-    };
-
-    localStorage.setItem(selectedElement_id, JSON.stringify(data));
 }
 
 function getDataFromDB(id) {

@@ -21,6 +21,8 @@ if ($_POST["type"] === 'TextToDb') {
     echo (json_encode(HTMLClass::moveDownloadedFile($_POST['fileName'],$_POST['path'])));
 } else if($_POST['type'] === 'checkVideos'){
     echo (json_encode(VideoClass::moveVideo($_FILES['file'])));
+} else if($_POST['type'] === 'getVideoSrc'){
+    echo (VideoClass::getVideoSrc($_POST['videoName']));
 }
 else {
     echo("Something went wrong!");

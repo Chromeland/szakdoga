@@ -91,9 +91,9 @@ async function saveCanvasAsHTML() {
             if (child.id.includes('image')) {
                 let oldsrc = child.getAttribute('src');
                 child.setAttribute('src', picPathBackToNormal(oldsrc));
-            } else if (child.id.includes('image')) {
+            } else if (child.id.includes('video')) {
                 let oldsrc = child.children [0].getAttribute('src');
-                child.children[0].setAttribute('src', picPathBackToNormal(oldsrc));
+                child.children[0].setAttribute('src', vidPathBackToNormal(oldsrc));
             }
         }
     } else {
@@ -102,9 +102,9 @@ async function saveCanvasAsHTML() {
             if (child.id.includes('image')) {
                 let oldsrc = child.getAttribute('src');
                 child.setAttribute('src', picPathBackToNormal(oldsrc));
-            } else if (child.id.includes('image')) {
+            } else if (child.id.includes('video')) {
                 let oldsrc = child.children [0].getAttribute('src');
-                child.children[0].setAttribute('src', picPathBackToNormal(oldsrc));
+                child.children[0].setAttribute('src', vidPathBackToNormal(oldsrc));
             }
         }
     }
