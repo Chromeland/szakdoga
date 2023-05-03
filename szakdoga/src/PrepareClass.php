@@ -17,12 +17,12 @@ if ($_POST["type"] === 'TextToDb') {
     echo(json_encode(PictureClass::deleteImage($_POST['picName'])));
 }else if($_POST['type'] === 'imageFolderClear'){
     echo(json_encode(PictureClass::newProject($_POST['folder'])));
-}else if($_POST['type'] === 'HTMLMove'){
-    echo (json_encode(HTMLClass::moveDownloadedFile($_POST['fileName'],$_POST['path'])));
 } else if($_POST['type'] === 'checkVideos'){
     echo (json_encode(VideoClass::moveVideo($_FILES['file'])));
 } else if($_POST['type'] === 'getVideoSrc'){
     echo (VideoClass::getVideoSrc($_POST['videoName']));
+} else if($_POST['type'] === 'recourceMove'){
+    echo(json_encode(HTMLClass::moveUploadedRecources($_POST['path'])));
 }
 else {
     echo("Something went wrong!");

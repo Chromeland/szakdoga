@@ -2,23 +2,20 @@
 
 class HTMLClass
 {
-    public static function moveDownloadedFile($filename, $path): bool
+
+    public static function moveUploadedRecources($path): bool
     {
+
         // Create directory if it doesn't exist
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
         }
-
-        //move picture to the the right folder too.
+//move picture to the the right folder too.
         $picSrc = '../public/assets/pictures';
         $vidSrc = '../public/assets/videos';
         $picPath = $path . "/pictures";
         $vidPath = $path . "/videos";
 
-        // Move file to destination
-        $filePath = getenv('USERPROFILE') . DIRECTORY_SEPARATOR . 'Downloads' . DIRECTORY_SEPARATOR . $filename;
-        $destination = $path . '/' . $filename;
-        rename($filePath, $destination);
         self::copyFolder($picSrc, $picPath);
         self::copyFolder($vidSrc, $vidPath);
         return true;

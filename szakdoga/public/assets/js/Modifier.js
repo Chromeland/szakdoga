@@ -242,7 +242,7 @@ function saveButtonToDB() {
         } else if (destinationType === 'file') {
             let fileInput = document.getElementById('goto_file');
             let selectedFile = fileInput.files[0]['name'];
-            goTo = '../public/assets/saved_pages/' + selectedFile;
+            goTo = 'http://kdbiy8.szakdolgozat.net/Szakdolgozat/szakdoga/public/assets/saved_pages/' + selectedFile;
             selectedElement.setAttribute('onclick', "window.location.href = '" + goTo + "'");
         }
     }

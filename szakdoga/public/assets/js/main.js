@@ -69,19 +69,10 @@ async function saveCanvasAsHTML() {
                 url: '../src/PrepareClass.php',
                 type: 'POST',
                 data: {
-                    type: 'HTMLMove',
-                    fileName: fileName,
+                    type: 'recourceMove',
                     path: '../public/assets/saved_pages'
-                },
-                success: function (result) {
-                    if (!result) {
-                        console.log("Something went wrong!!!");
-                    }
-                },
-                error: function () {
-                    console.log("Something went wrong!!!");
                 }
-            });
+            })
         };
         document.body.appendChild(downloadLink);
         downloadLink.click();
@@ -108,6 +99,7 @@ async function saveCanvasAsHTML() {
             }
         }
     }
+    alert('Please move the downloaded html file into the saved_pages folder!');
 }
 
 function elementDelete(e) {
