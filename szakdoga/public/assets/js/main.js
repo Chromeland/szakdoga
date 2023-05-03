@@ -57,6 +57,7 @@ async function saveCanvasAsHTML() {
     html += '</div>\n';
     html += '</body>\n</html>';
     let fileName = prompt("Enter file name:", "Webpage.html");
+    // alert('Please move the downloaded html file into the saved_pages folder!');
     if (fileName !== null) {
         if (!fileName.endsWith('.html')) {
             fileName += '.html';
@@ -70,7 +71,20 @@ async function saveCanvasAsHTML() {
                 type: 'POST',
                 data: {
                     type: 'recourceMove',
-                    path: '../public/assets/saved_pages'
+                    path: '../public/assets/saved_pages',
+                    },
+                success: function (result) {
+                        console.log(result);
+                    $.ajax({
+                        url: '../src/PrepareClass.php',
+                        type: 'POST',
+                        data: {
+                            type: 'createHTML',
+                            // path: 'http://kdbiy8.szakdolgozat.net/Szakdolgozat/szakdoga/public/assets/saved_pages/' + fileName,
+                            path: '../public/assets/saved_pages/' + fileName,
+                            content: html,
+                        },
+                    })
                 }
             })
         };
@@ -99,7 +113,6 @@ async function saveCanvasAsHTML() {
             }
         }
     }
-    alert('Please move the downloaded html file into the saved_pages folder!');
 }
 
 function elementDelete(e) {

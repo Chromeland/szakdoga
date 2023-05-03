@@ -3,13 +3,23 @@
 class HTMLClass
 {
 
-    public static function moveUploadedRecources($path): bool
+    public static function createHTML($path,$content = '*'): bool
+    {
+        if (!file_exists($path)){
+            file_put_contents($path,$content);
+            return $path;
+        }
+        return false;
+    }
+
+    public static function moveUploadedRecources($path): string
     {
 
         // Create directory if it doesn't exist
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
         }
+
 //move picture to the the right folder too.
         $picSrc = '../public/assets/pictures';
         $vidSrc = '../public/assets/videos';
@@ -18,7 +28,7 @@ class HTMLClass
 
         self::copyFolder($picSrc, $picPath);
         self::copyFolder($vidSrc, $vidPath);
-        return true;
+        return 'Success';
     }
 
     public static function copyFolder($src, $dst): void
