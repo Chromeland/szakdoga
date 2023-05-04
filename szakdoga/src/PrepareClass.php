@@ -23,6 +23,8 @@ if ($_POST["type"] === 'TextToDb') {
     echo (VideoClass::getVideoSrc($_POST['videoName']));
 } else if($_POST['type'] === 'recourceMove'){
     echo(json_encode(HTMLClass::moveUploadedRecources($_POST['path'])));
+} else if($_POST['type'] === 'createHTML'){
+    echo(json_encode(HTMLClass::createHTML($_POST['path'],$_POST['content'])));
 }
 else {
     echo("Something went wrong!");
