@@ -57,7 +57,6 @@ async function saveCanvasAsHTML() {
     html += '</div>\n';
     html += '</body>\n</html>';
     let fileName = prompt("Enter file name:", "Webpage.html");
-    // alert('Please move the downloaded html file into the saved_pages folder!');
     if (fileName !== null) {
         if (!fileName.endsWith('.html')) {
             fileName += '.html';
@@ -84,9 +83,6 @@ async function saveCanvasAsHTML() {
                             path: '../public/assets/saved_pages/' + fileName,
                             content: html,
                         },
-                        success: function (result){
-                            window.href = result;
-                        }
                     })
                 }
             })
